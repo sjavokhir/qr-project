@@ -1,0 +1,23 @@
+CREATE TABLE Favorites(
+    id TEXT NOT NULL PRIMARY KEY,
+    arabic TEXT,
+    translation TEXT,
+    position TEXT,
+    audio TEXT,
+    status INTEGER,
+    duaType INTEGER
+);
+
+getDuas:
+SELECT * FROM Favorites WHERE duaType = ?;
+
+getDuaById:
+SELECT * FROM Favorites WHERE id = ?;
+
+insert:
+INSERT OR REPLACE
+INTO Favorites(id, arabic, translation, position, audio, status, duaType)
+VALUES (?,?, ?, ?, ?, ?, ?);
+
+deleteById:
+DELETE FROM Favorites WHERE id = ?;
