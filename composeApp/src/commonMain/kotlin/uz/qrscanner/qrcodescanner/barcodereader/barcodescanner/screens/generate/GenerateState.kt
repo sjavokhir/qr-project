@@ -1,7 +1,7 @@
 package uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generate
 
-import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.GenerateModel
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.GenerateType
 
 data class GenerateState(
-    val categories: List<GenerateModel> = emptyList()
+    val categories: List<GenerateType> = emptyList()
 )

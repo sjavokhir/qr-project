@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.GenerateModel
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.GenerateType
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.NavigationType
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.components.*
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.resources.AppIcons
@@ -23,7 +23,8 @@ import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.reso
 internal fun GenerateContent(
     state: GenerateState,
     onNavigationClick: (NavigationType) -> Unit,
-    onNavigateToSettings: () -> Unit
+    onNavigateToSettings: () -> Unit,
+    onGenerateItemClick: (GenerateType) -> Unit,
 ) {
     AppBackground {
         Box {
@@ -40,8 +41,8 @@ internal fun GenerateContent(
             ) {
                 items(state.categories) {
                     GenerateItem(
-                        model = it,
-                        onClick = {}
+                        type = it,
+                        onClick = { onGenerateItemClick(it) }
                     )
                 }
             }
@@ -63,7 +64,7 @@ internal fun GenerateContent(
 
 @Composable
 private fun GenerateItem(
-    model: GenerateModel,
+    type: GenerateType,
     onClick: () -> Unit
 ) {
     SurfaceContent {
@@ -76,12 +77,12 @@ private fun GenerateItem(
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             AppIcon(
-                imageVector = model.icon,
+                imageVector = type.icon,
                 modifier = Modifier.size(30.dp)
             )
 
             Text(
-                text = model.title,
+                text = type.title,
                 style = MaterialTheme.typography.body2,
                 fontWeight = FontWeight.SemiBold,
                 color = MaterialTheme.colors.primary,

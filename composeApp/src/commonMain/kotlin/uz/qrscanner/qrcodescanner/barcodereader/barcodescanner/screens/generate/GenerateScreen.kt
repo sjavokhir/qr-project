@@ -7,6 +7,7 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.NavigationType
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateCode.GenerateCodeScreen
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.replaceTo
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.settings.SettingsScreen
 
@@ -22,7 +23,8 @@ internal object GenerateScreen : Screen {
         GenerateContent(
             state = state,
             onNavigationClick = { navigator.replaceTo(it, NavigationType.Generate) },
-            onNavigateToSettings = { navigator.push(SettingsScreen) }
+            onNavigateToSettings = { navigator.push(SettingsScreen) },
+            onGenerateItemClick = { navigator.push(GenerateCodeScreen(it)) }
         )
     }
 }

@@ -29,13 +29,12 @@ internal object AppIcons {
     val PhotoLibrary = Icons.Rounded.PhotoLibrary
     val FlipCameraIos = Icons.Rounded.FlipCameraIos
     val WhatsApp = WhatsAppIcon
-    val Discord = DiscordIcon
     val Facebook = FacebookIcon
     val Github = GithubIcon
     val Instagram = InstagramIcon
-    val Linkedin = LinkedinIcon
+    val LinkedIn = LinkedinIcon
     val Telegram = TelegramIcon
-    val Tiktok = TiktokIcon
+    val TikTok = TiktokIcon
     val Twitch = TwitchIcon
     val Twitter = TwitterIcon
     val Youtube = YoutubeIcon
