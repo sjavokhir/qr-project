@@ -12,14 +12,16 @@ import cafe.adriel.voyager.navigator.currentOrThrow
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.GenerateType
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateCode.email.EmailContent
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateCode.email.EmailScreenModel
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateCode.phone.PhoneContent
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateCode.phone.PhoneScreenModel
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateCode.socialMedia.SocialMediaContent
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateCode.socialMedia.SocialMediaScreenModel
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateCode.text.TextContent
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateCode.text.TextScreenModel
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateCode.website.WebsiteContent
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateCode.website.WebsiteScreenModel
-import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateCode.whatsapp.WhatsAppContent
-import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateCode.whatsapp.WhatsAppScreenModel
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateCode.wifi.WifiContent
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateCode.wifi.WifiScreenModel
 
 internal data class GenerateCodeScreen(
     val type: GenerateType
@@ -38,18 +40,22 @@ internal data class GenerateCodeScreen(
                     val screenModel = rememberScreenModel { TextScreenModel() }
                     TextContent(
                         screenModel = screenModel,
-                        onGenerate = { navigateToResult(it) }
+                        onGenerate = { navigateToResult(it, type) }
                     )
                 }
                 GenerateType.Website -> {
                     val screenModel = rememberScreenModel { WebsiteScreenModel() }
                     WebsiteContent(
                         screenModel = screenModel,
-                        onGenerate = { navigateToResult(it) }
+                        onGenerate = { navigateToResult(it, type) }
                     )
                 }
                 GenerateType.Wifi -> {
-                    Spacer(modifier = Modifier.height(56.dp))
+                    val screenModel = rememberScreenModel { WifiScreenModel() }
+                    WifiContent(
+                        screenModel = screenModel,
+                        onGenerate = { navigateToResult(it, type) }
+                    )
                 }
                 GenerateType.Event -> {
                     Spacer(modifier = Modifier.height(56.dp))
@@ -63,25 +69,19 @@ internal data class GenerateCodeScreen(
                 GenerateType.Location -> {
                     Spacer(modifier = Modifier.height(56.dp))
                 }
-                GenerateType.Telephone -> {
-                    val screenModel = rememberScreenModel { WhatsAppScreenModel() }
-                    WhatsAppContent(
-                        screenModel = screenModel,
-                        onGenerate = { navigateToResult(it) }
-                    )
-                }
                 GenerateType.Email -> {
                     val screenModel = rememberScreenModel { EmailScreenModel() }
                     EmailContent(
                         screenModel = screenModel,
-                        onGenerate = { navigateToResult(it) }
+                        onGenerate = { navigateToResult(it, type) }
                     )
                 }
+                GenerateType.Phone,
                 GenerateType.WhatsApp -> {
-                    val screenModel = rememberScreenModel { WhatsAppScreenModel() }
-                    WhatsAppContent(
+                    val screenModel = rememberScreenModel { PhoneScreenModel() }
+                    PhoneContent(
                         screenModel = screenModel,
-                        onGenerate = { navigateToResult(it) }
+                        onGenerate = { navigateToResult(it, type) }
                     )
                 }
                 GenerateType.Youtube,
@@ -97,13 +97,13 @@ internal data class GenerateCodeScreen(
                     SocialMediaContent(
                         screenModel = screenModel,
                         type = type,
-                        onGenerate = { navigateToResult(it) }
+                        onGenerate = { navigateToResult(it, type) }
                     )
                 }
             }
         }
     }
 
-    private fun navigateToResult(text: String) {
+    private fun navigateToResult(text: String, type: GenerateType) {
     }
 }

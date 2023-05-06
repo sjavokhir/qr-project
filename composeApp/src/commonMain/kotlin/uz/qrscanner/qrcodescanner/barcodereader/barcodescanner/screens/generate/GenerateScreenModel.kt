@@ -29,7 +29,7 @@ class GenerateScreenModel : ScreenModel, KoinComponent {
                 add(GenerateType.Contact)
                 add(GenerateType.Business)
                 add(GenerateType.Location)
-                add(GenerateType.Telephone)
+                add(GenerateType.Phone)
                 add(GenerateType.Email)
                 add(GenerateType.Youtube)
                 add(GenerateType.WhatsApp)

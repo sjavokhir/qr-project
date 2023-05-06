@@ -15,7 +15,7 @@ enum class GenerateType(
     Contact(AppStrings.contact, AppIcons.Contacts),
     Business(AppStrings.business, AppIcons.Domain),
     Location(AppStrings.location, AppIcons.ShareLocation),
-    Telephone(AppStrings.telephone, AppIcons.PhoneCallback),
+    Phone(AppStrings.phone, AppIcons.PhoneCallback),
     Email(AppStrings.email, AppIcons.Email),
     Youtube(AppStrings.youtube, AppIcons.Youtube),
     WhatsApp(AppStrings.whatsApp, AppIcons.WhatsApp),

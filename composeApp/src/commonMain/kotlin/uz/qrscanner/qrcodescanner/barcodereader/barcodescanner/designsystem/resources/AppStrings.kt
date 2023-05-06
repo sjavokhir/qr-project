@@ -29,7 +29,7 @@ internal object AppStrings {
     const val contact = "Contact"
     const val business = "Business"
     const val location = "Location"
-    const val telephone = "Telephone"
+    const val phone = "Phone"
     const val email = "Email"
     const val youtube = "YouTube"
     const val whatsApp = "WhatsApp"
@@ -43,8 +43,14 @@ internal object AppStrings {
     const val github = "Github"
     const val enterText = "Enter text"
     const val enterEmailAddress = "Enter email address"
+    const val enterPhoneNumber = "Enter phone number"
+    const val enterPassword = "Enter password"
+    const val enterNetworkName = "Enter network name"
+    const val password = "Password"
     const val googleCom = "google.com"
     const val username = "Username"
+    const val phoneNumber = "Phone number"
+    const val network = "Network"
 
     fun enterUsername(type: GenerateType): String {
         return "Enter ${type.title} username"

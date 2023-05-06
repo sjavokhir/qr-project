@@ -1,4 +1,4 @@
-package uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateCode.whatsapp
+package uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateCode.phone
 
 import cafe.adriel.voyager.core.model.ScreenModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -6,19 +6,19 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import org.koin.core.component.KoinComponent
 
-class WhatsAppScreenModel : ScreenModel, KoinComponent {
+class PhoneScreenModel : ScreenModel, KoinComponent {
 
-    private val whatsAppStateData = MutableStateFlow(WhatsAppState())
-    val whatsAppState = whatsAppStateData.asStateFlow()
+    private val phoneStateData = MutableStateFlow(PhoneState())
+    val phoneState = phoneStateData.asStateFlow()
 
-    fun onEvent(event: WhatsAppEvent) {
+    fun onEvent(event: PhoneEvent) {
         when (event) {
-            is WhatsAppEvent.PhoneChanged -> onValueChanged(phone = event.text)
+            is PhoneEvent.PhoneChanged -> onValueChanged(phone = event.text)
         }
     }
 
     private fun onValueChanged(phone: String) {
-        whatsAppStateData.update {
+        phoneStateData.update {
             it.copy(
                 phone = phone,
                 isEnabled = phone.isNotEmpty()
@@ -27,6 +27,6 @@ class WhatsAppScreenModel : ScreenModel, KoinComponent {
     }
 
     fun getGenerateQrCode(): String {
-        return whatsAppState.value.phone
+        return phoneState.value.phone
     }
 }

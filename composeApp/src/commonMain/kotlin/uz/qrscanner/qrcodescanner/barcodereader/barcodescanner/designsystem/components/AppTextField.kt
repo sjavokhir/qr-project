@@ -30,6 +30,7 @@ internal fun AppTextField(
         textStyle = MaterialTheme.typography.body1.copy(
             color = MaterialTheme.colors.onBackground
         ),
+        singleLine = keyboardType != KeyboardType.Text,
         keyboardOptions = KeyboardOptions(
             keyboardType = keyboardType
         ),
