@@ -1,5 +1,6 @@
 package uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens
 
+import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import cafe.adriel.voyager.navigator.CurrentScreen
 import cafe.adriel.voyager.navigator.Navigator
@@ -11,7 +12,9 @@ import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.history.H
 
 @Composable
 internal fun App() = QrTheme {
-    Navigator(DetectionScreen) { CurrentScreen() }
+    Navigator(DetectionScreen) {
+        Scaffold { CurrentScreen() }
+    }
 }
 
 internal fun Navigator.replaceTo(
@@ -19,7 +22,7 @@ internal fun Navigator.replaceTo(
     currentNavigationType: NavigationType
 ) {
     when (navigationType) {
-        NavigationType.Generate -> {
+        NavigationType.Categories -> {
             if (navigationType != currentNavigationType) replaceAll(CategoriesScreen)
         }
         NavigationType.Detection -> {

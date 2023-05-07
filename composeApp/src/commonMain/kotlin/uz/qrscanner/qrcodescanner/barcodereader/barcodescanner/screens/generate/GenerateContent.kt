@@ -16,7 +16,6 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.GenerateType
-import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.components.AppBackground
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.components.AppIcon
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.components.AppTopBar
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.components.SurfaceContent
@@ -31,29 +30,27 @@ internal fun GenerateContent(
     type: GenerateType,
     sendEvent: (UiEvent) -> Unit
 ) {
-    AppBackground {
-        Box {
-            LazyColumn(
-                contentPadding = PaddingValues(
-                    start = 20.dp,
-                    end = 20.dp,
-                    top = 100.dp,
-                    bottom = 20.dp
-                ),
-                verticalArrangement = Arrangement.spacedBy(32.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                item { GenerateInfo(type = type) }
-                item { GenerateActions() }
-            }
-
-            AppTopBar(
-                title = AppStrings.result,
-                onNavigationClick = {
-                    sendEvent(UiEvent.NavigateUp)
-                }
-            )
+    Box {
+        LazyColumn(
+            contentPadding = PaddingValues(
+                start = 20.dp,
+                end = 20.dp,
+                top = 100.dp,
+                bottom = 20.dp
+            ),
+            verticalArrangement = Arrangement.spacedBy(32.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            item { GenerateInfo(type = type) }
+            item { GenerateActions() }
         }
+
+        AppTopBar(
+            title = AppStrings.result,
+            onNavigationClick = {
+                sendEvent(UiEvent.NavigateUp)
+            }
+        )
     }
 }
 

@@ -15,7 +15,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.GenerateType
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.NavigationType
-import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.components.*
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.components.AppIcon
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.components.AppNavigationBar
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.components.AppTopBar
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.components.SurfaceContent
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.resources.AppIcons
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.resources.AppStrings
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.base.UiEvent
@@ -27,43 +30,41 @@ internal fun CategoriesContent(
     state: CategoriesState,
     sendEvent: (UiEvent) -> Unit
 ) {
-    AppBackground {
-        Box {
-            LazyVerticalGrid(
-                columns = GridCells.Fixed(3),
-                contentPadding = PaddingValues(
-                    start = 20.dp,
-                    end = 20.dp,
-                    top = 100.dp,
-                    bottom = 120.dp
-                ),
-                verticalArrangement = Arrangement.spacedBy(20.dp),
-                horizontalArrangement = Arrangement.spacedBy(20.dp)
-            ) {
-                items(state.categories) {
-                    GenerateItem(
-                        type = it,
-                        onClick = {
-                            sendEvent(UiEvent.Navigate(GenerateCodeScreen(it)))
-                        }
-                    )
-                }
+    Box {
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(3),
+            contentPadding = PaddingValues(
+                start = 20.dp,
+                end = 20.dp,
+                top = 100.dp,
+                bottom = 120.dp
+            ),
+            verticalArrangement = Arrangement.spacedBy(20.dp),
+            horizontalArrangement = Arrangement.spacedBy(20.dp)
+        ) {
+            items(state.categories) {
+                GenerateItem(
+                    type = it,
+                    onClick = {
+                        sendEvent(UiEvent.Navigate(GenerateCodeScreen(it)))
+                    }
+                )
             }
-
-            AppTopBar(
-                title = AppStrings.generate_qr,
-                trailingIcon = AppIcons.Settings,
-                onTrailingIconClick = {
-                    sendEvent(UiEvent.Navigate(SettingsScreen))
-                }
-            )
-
-            AppNavigationBar(
-                modifier = Modifier.align(Alignment.BottomCenter),
-                currentNavigationType = NavigationType.Generate,
-                sendEvent = sendEvent
-            )
         }
+
+        AppTopBar(
+            title = AppStrings.generate_qr,
+            trailingIcon = AppIcons.Settings,
+            onTrailingIconClick = {
+                sendEvent(UiEvent.Navigate(SettingsScreen))
+            }
+        )
+
+        AppNavigationBar(
+            modifier = Modifier.align(Alignment.BottomCenter),
+            currentNavigationType = NavigationType.Categories,
+            sendEvent = sendEvent
+        )
     }
 }
 

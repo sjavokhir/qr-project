@@ -59,11 +59,11 @@ internal fun AppNavigationBar(
                 NavigationBarItem(
                     imageVector = AppIcons.QrCode,
                     text = AppStrings.generate,
-                    isSelected = currentNavigationType == NavigationType.Generate,
+                    isSelected = currentNavigationType == NavigationType.Categories,
                     onClick = {
                         sendEvent(
                             UiEvent.ReplaceTo(
-                                navigationType = NavigationType.Generate,
+                                navigationType = NavigationType.Categories,
                                 currentNavigationType = currentNavigationType
                             )
                         )

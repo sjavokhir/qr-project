@@ -13,7 +13,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.components.AppBackground
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.components.AppIcon
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.components.AppTopBar
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.components.SurfaceContent
@@ -31,81 +30,79 @@ internal fun SettingsContent(
     onEvent: (SettingsEvent) -> Unit,
     sendEvent: (UiEvent) -> Unit
 ) {
-    AppBackground {
-        Box {
-            LazyColumn(
-                contentPadding = PaddingValues(
-                    start = 20.dp,
-                    end = 20.dp,
-                    top = 100.dp,
-                    bottom = 20.dp
-                ),
-                verticalArrangement = Arrangement.spacedBy(20.dp)
-            ) {
-                item {
-                    Text(
-                        text = AppStrings.settings,
-                        style = MaterialTheme.typography.h5,
-                        color = MaterialTheme.colors.primary,
-                        fontWeight = FontWeight.Bold
-                    )
-                }
-                item {
-                    SettingsItemWithCheckbox(
-                        title = AppStrings.vibrate,
-                        description = AppStrings.vibrateDescription,
-                        icon = AppIcons.Vibration,
-                        isChecked = state.isVibrateChecked,
-                        onChecked = {
-                            onEvent(SettingsEvent.VibrateChecked(it))
-                        }
-                    )
-                }
-                item {
-                    SettingsItemWithCheckbox(
-                        title = AppStrings.beep,
-                        description = AppStrings.beepDescription,
-                        icon = AppIcons.NotificationsActive,
-                        isChecked = state.isBeepChecked,
-                        onChecked = {
-                            onEvent(SettingsEvent.BeepChecked(it))
-                        }
-                    )
-                }
-                item { Spacer(modifier = Modifier.height(0.dp)) }
-                item {
-                    Text(
-                        text = AppStrings.support,
-                        style = MaterialTheme.typography.h5,
-                        color = MaterialTheme.colors.primary,
-                        fontWeight = FontWeight.Bold
-                    )
-                }
-                item {
-                    SettingsItem(
-                        title = AppStrings.rateUs,
-                        description = AppStrings.rateUsDescription,
-                        icon = AppIcons.Verified,
-                        onClick = { openUrl(appUrl) }
-                    )
-                }
-                item {
-                    SettingsItem(
-                        title = AppStrings.share,
-                        description = AppStrings.shareDescription,
-                        icon = AppIcons.Share,
-                        onClick = { shareText("${AppStrings.onBoardingDescription}\n\n${appUrl}") }
-                    )
-                }
+    Box {
+        LazyColumn(
+            contentPadding = PaddingValues(
+                start = 20.dp,
+                end = 20.dp,
+                top = 100.dp,
+                bottom = 20.dp
+            ),
+            verticalArrangement = Arrangement.spacedBy(20.dp)
+        ) {
+            item {
+                Text(
+                    text = AppStrings.settings,
+                    style = MaterialTheme.typography.h5,
+                    color = MaterialTheme.colors.primary,
+                    fontWeight = FontWeight.Bold
+                )
             }
-
-            AppTopBar(
-                title = "",
-                onNavigationClick = {
-                    sendEvent(UiEvent.NavigateUp)
-                }
-            )
+            item {
+                SettingsItemWithCheckbox(
+                    title = AppStrings.vibrate,
+                    description = AppStrings.vibrateDescription,
+                    icon = AppIcons.Vibration,
+                    isChecked = state.isVibrateChecked,
+                    onChecked = {
+                        onEvent(SettingsEvent.VibrateChecked(it))
+                    }
+                )
+            }
+            item {
+                SettingsItemWithCheckbox(
+                    title = AppStrings.beep,
+                    description = AppStrings.beepDescription,
+                    icon = AppIcons.NotificationsActive,
+                    isChecked = state.isBeepChecked,
+                    onChecked = {
+                        onEvent(SettingsEvent.BeepChecked(it))
+                    }
+                )
+            }
+            item { Spacer(modifier = Modifier.height(0.dp)) }
+            item {
+                Text(
+                    text = AppStrings.support,
+                    style = MaterialTheme.typography.h5,
+                    color = MaterialTheme.colors.primary,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+            item {
+                SettingsItem(
+                    title = AppStrings.rateUs,
+                    description = AppStrings.rateUsDescription,
+                    icon = AppIcons.Verified,
+                    onClick = { openUrl(appUrl) }
+                )
+            }
+            item {
+                SettingsItem(
+                    title = AppStrings.share,
+                    description = AppStrings.shareDescription,
+                    icon = AppIcons.Share,
+                    onClick = { shareText("${AppStrings.onBoardingDescription}\n\n${appUrl}") }
+                )
+            }
         }
+
+        AppTopBar(
+            title = "",
+            onNavigationClick = {
+                sendEvent(UiEvent.NavigateUp)
+            }
+        )
     }
 }
 

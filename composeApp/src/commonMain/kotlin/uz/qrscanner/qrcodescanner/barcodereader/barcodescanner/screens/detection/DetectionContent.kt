@@ -13,7 +13,6 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.NavigationType
-import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.components.AppBackground
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.components.AppIcon
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.components.AppNavigationBar
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.components.SurfaceContent
@@ -30,77 +29,75 @@ internal fun DetectionContent(
 ) {
     var isFrontCamera by remember { mutableStateOf(false) }
 
-    AppBackground {
-        Box {
-            QrCameraView(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .clip(
-                        RoundedCornerShape(
-                            topStart = 16.dp,
-                            topEnd = 16.dp,
-                            bottomStart = 0.dp,
-                            bottomEnd = 0.dp
-                        )
+    Box {
+        QrCameraView(
+            modifier = Modifier
+                .fillMaxSize()
+                .clip(
+                    RoundedCornerShape(
+                        topStart = 16.dp,
+                        topEnd = 16.dp,
+                        bottomStart = 0.dp,
+                        bottomEnd = 0.dp
                     )
-                    .align(Alignment.Center)
-                    .pointerInput(isFrontCamera) {
-                        detectHorizontalDragGestures { _, dragAmount ->
-                            if (dragAmount.absoluteValue > 50.0) {
-                                isFrontCamera = !isFrontCamera
-                            }
-                        }
-                    },
-                isFrontCamera = isFrontCamera,
-                onQrResult = {
-
-                }
-            )
-
-            Box(
-                modifier = Modifier
-                    .padding(56.dp)
-                    .aspectRatio(1f)
-                    .align(Alignment.Center)
-            ) {
-                Image(
-                    modifier = Modifier.fillMaxSize(),
-                    imageVector = AppIcons.AppLogo3,
-                    contentDescription = null,
-                    contentScale = ContentScale.FillBounds
                 )
-            }
+                .align(Alignment.Center)
+                .pointerInput(isFrontCamera) {
+                    detectHorizontalDragGestures { _, dragAmount ->
+                        if (dragAmount.absoluteValue > 50.0) {
+                            isFrontCamera = !isFrontCamera
+                        }
+                    }
+                },
+            isFrontCamera = isFrontCamera,
+            onQrResult = {
 
-            SurfaceContent(
-                modifier = Modifier
-                    .padding(20.dp)
-                    .align(Alignment.TopCenter)
-            ) {
-                Row(
-                    modifier = Modifier.padding(horizontal = 4.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(20.dp)
-                ) {
-                    IconButton(onClick = {}) {
-                        AppIcon(imageVector = AppIcons.PhotoLibrary)
-                    }
-                    IconButton(onClick = {}) {
-                        AppIcon(imageVector = AppIcons.FlashOn)
-                    }
-                    IconButton(onClick = { isFrontCamera = !isFrontCamera }) {
-                        AppIcon(imageVector = AppIcons.FlipCameraIos)
-                    }
-                    IconButton(onClick = { sendEvent(UiEvent.Navigate(SettingsScreen)) }) {
-                        AppIcon(imageVector = AppIcons.Settings)
-                    }
-                }
             }
+        )
 
-            AppNavigationBar(
-                modifier = Modifier.align(Alignment.BottomCenter),
-                currentNavigationType = NavigationType.Detection,
-                sendEvent = sendEvent
+        Box(
+            modifier = Modifier
+                .padding(56.dp)
+                .aspectRatio(1f)
+                .align(Alignment.Center)
+        ) {
+            Image(
+                modifier = Modifier.fillMaxSize(),
+                imageVector = AppIcons.AppLogo3,
+                contentDescription = null,
+                contentScale = ContentScale.FillBounds
             )
         }
+
+        SurfaceContent(
+            modifier = Modifier
+                .padding(20.dp)
+                .align(Alignment.TopCenter)
+        ) {
+            Row(
+                modifier = Modifier.padding(horizontal = 4.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(20.dp)
+            ) {
+                IconButton(onClick = { sendEvent(UiEvent.Message("Photo library")) }) {
+                    AppIcon(imageVector = AppIcons.PhotoLibrary)
+                }
+                IconButton(onClick = { sendEvent(UiEvent.Message("Flash on")) }) {
+                    AppIcon(imageVector = AppIcons.FlashOn)
+                }
+                IconButton(onClick = { isFrontCamera = !isFrontCamera }) {
+                    AppIcon(imageVector = AppIcons.FlipCameraIos)
+                }
+                IconButton(onClick = { sendEvent(UiEvent.Navigate(SettingsScreen)) }) {
+                    AppIcon(imageVector = AppIcons.Settings)
+                }
+            }
+        }
+
+        AppNavigationBar(
+            modifier = Modifier.align(Alignment.BottomCenter),
+            currentNavigationType = NavigationType.Detection,
+            sendEvent = sendEvent
+        )
     }
 }

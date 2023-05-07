@@ -10,17 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import platform.CoreFoundation.CFUUIDCreate
 import platform.CoreFoundation.CFUUIDCreateString
 import platform.Foundation.CFBridgingRelease
-import platform.Foundation.NSURL
-import platform.UIKit.UIActivityViewController
 import platform.UIKit.UIApplication
-import platform.UIKit.UIImage
-import platform.UIKit.UIWindow
-
-class IosStorableImage(
-    val rawValue: UIImage
-)
-
-actual typealias PlatformStorableImage = IosStorableImage
 
 private val iosNotchInset = object : WindowInsets {
     override fun getTop(density: Density): Int {
@@ -48,25 +38,6 @@ private val iosNotchInset = object : WindowInsets {
 
 actual fun Modifier.notchPadding(): Modifier =
     this.windowInsetsPadding(iosNotchInset)
-
-actual fun openUrl(url: String) {
-    val nsUrl = NSURL.URLWithString(url) ?: return
-    UIApplication.sharedApplication.openURL(nsUrl)
-}
-
-actual fun shareText(text: String) {
-    val window = UIApplication.sharedApplication.windows.last() as? UIWindow
-    val currentViewController = window?.rootViewController
-    val activityViewController = UIActivityViewController(
-        activityItems = listOf(text),
-        applicationActivities = null
-    )
-    currentViewController?.presentViewController(
-        viewControllerToPresent = activityViewController,
-        animated = true,
-        completion = null,
-    )
-}
 
 actual fun randomUUID(): String =
     CFBridgingRelease(CFUUIDCreateString(null, CFUUIDCreate(null))) as String

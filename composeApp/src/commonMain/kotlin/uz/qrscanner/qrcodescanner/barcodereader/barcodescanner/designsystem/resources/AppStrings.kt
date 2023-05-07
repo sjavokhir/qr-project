@@ -54,6 +54,7 @@ internal object AppStrings {
     const val username = "Username"
     const val phoneNumber = "Phone number"
     const val network = "Network"
+    const val ok = "OK"
 
     fun enterUsername(type: GenerateType): String {
         return "Enter ${type.title} username"
