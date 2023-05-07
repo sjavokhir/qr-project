@@ -23,16 +23,6 @@ internal val typography = Typography(
         fontSize = 18.sp,
         letterSpacing = 0.15.sp
     ),
-    body1 = TextStyle(
-        fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
-        letterSpacing = 0.5.sp
-    ),
-    body2 = TextStyle(
-        fontWeight = FontWeight.Normal,
-        fontSize = 14.sp,
-        letterSpacing = 0.25.sp
-    ),
     button = TextStyle(
         fontWeight = FontWeight.Bold,
         fontSize = 18.sp,

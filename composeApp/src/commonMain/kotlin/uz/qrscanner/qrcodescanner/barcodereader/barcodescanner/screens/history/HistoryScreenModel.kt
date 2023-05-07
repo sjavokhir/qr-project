@@ -1,19 +1,14 @@
 package uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.history
 
-import cafe.adriel.voyager.core.model.ScreenModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import org.koin.core.component.KoinComponent
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.base.BaseScreenModel
 
-class HistoryScreenModel : ScreenModel, KoinComponent {
+class HistoryScreenModel : BaseScreenModel<HistoryState, HistoryEvent>() {
 
-    private val historyStateData = MutableStateFlow(HistoryState())
-    val historyState = historyStateData.asStateFlow()
+    override fun defaultState(): HistoryState = HistoryState()
 
-    fun onEvent(event: HistoryEvent) {
+    override fun onEvent(event: HistoryEvent) {
         when (event) {
-            HistoryEvent.Event -> {
-            }
+            HistoryEvent.GetHistory -> Unit
         }
     }
 }

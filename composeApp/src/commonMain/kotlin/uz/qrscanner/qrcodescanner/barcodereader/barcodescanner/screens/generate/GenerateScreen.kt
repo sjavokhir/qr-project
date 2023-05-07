@@ -2,29 +2,28 @@ package uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generate
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
-import cafe.adriel.voyager.navigator.LocalNavigator
-import cafe.adriel.voyager.navigator.currentOrThrow
-import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.NavigationType
-import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateCode.GenerateCodeScreen
-import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.replaceTo
-import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.settings.SettingsScreen
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.GenerateType
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.base.BaseScreenWrapper
 
-internal object GenerateScreen : Screen {
+internal data class GenerateScreen(
+    val text: String,
+    val type: GenerateType
+) : Screen {
 
     @Composable
     override fun Content() {
-        val navigator = LocalNavigator.currentOrThrow
-
         val screenModel = rememberScreenModel { GenerateScreenModel() }
-        val state = screenModel.generateState.collectAsState().value
+        val state by screenModel.state.collectAsState()
 
-        GenerateContent(
-            state = state,
-            onNavigationClick = { navigator.replaceTo(it, NavigationType.Generate) },
-            onNavigateToSettings = { navigator.push(SettingsScreen) },
-            onGenerateItemClick = { navigator.push(GenerateCodeScreen(it)) }
-        )
+        BaseScreenWrapper(screenModel = screenModel) {
+            GenerateContent(
+                state = state,
+                type = type,
+                sendEvent = screenModel::sendEvent
+            )
+        }
     }
 }

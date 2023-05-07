@@ -28,6 +28,8 @@ internal object AppIcons {
     val FlashOn = Icons.Rounded.FlashOn
     val PhotoLibrary = Icons.Rounded.PhotoLibrary
     val FlipCameraIos = Icons.Rounded.FlipCameraIos
+    val Copy = Icons.Rounded.ContentCopy
+    val Save = Icons.Rounded.Save
     val WhatsApp = WhatsAppIcon
     val Facebook = FacebookIcon
     val Github = GithubIcon

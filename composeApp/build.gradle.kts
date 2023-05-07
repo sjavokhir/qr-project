@@ -69,6 +69,7 @@ kotlin {
 
                 implementation("com.google.accompanist:accompanist-permissions:0.29.2-rc")
                 implementation("com.google.android.gms:play-services-mlkit-barcode-scanning:18.2.0")
+                implementation("com.google.zxing:core:3.4.1")
             }
         }
 

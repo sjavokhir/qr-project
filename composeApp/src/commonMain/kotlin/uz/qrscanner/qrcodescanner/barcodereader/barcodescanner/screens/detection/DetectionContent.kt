@@ -18,14 +18,15 @@ import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.comp
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.components.AppNavigationBar
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.components.SurfaceContent
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.resources.AppIcons
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.base.UiEvent
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.settings.SettingsScreen
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.view.QrCameraView
 import kotlin.math.absoluteValue
 
 @Composable
 internal fun DetectionContent(
     state: DetectionState,
-    onNavigationClick: (NavigationType) -> Unit,
-    onNavigateToSettings: () -> Unit
+    sendEvent: (UiEvent) -> Unit
 ) {
     var isFrontCamera by remember { mutableStateOf(false) }
 
@@ -89,7 +90,7 @@ internal fun DetectionContent(
                     IconButton(onClick = { isFrontCamera = !isFrontCamera }) {
                         AppIcon(imageVector = AppIcons.FlipCameraIos)
                     }
-                    IconButton(onClick = onNavigateToSettings) {
+                    IconButton(onClick = { sendEvent(UiEvent.Navigate(SettingsScreen)) }) {
                         AppIcon(imageVector = AppIcons.Settings)
                     }
                 }
@@ -97,8 +98,8 @@ internal fun DetectionContent(
 
             AppNavigationBar(
                 modifier = Modifier.align(Alignment.BottomCenter),
-                navigationType = NavigationType.Detection,
-                onClick = onNavigationClick
+                currentNavigationType = NavigationType.Detection,
+                sendEvent = sendEvent
             )
         }
     }

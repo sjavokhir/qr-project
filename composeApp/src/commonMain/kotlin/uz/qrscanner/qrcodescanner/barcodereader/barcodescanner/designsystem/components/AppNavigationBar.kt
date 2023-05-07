@@ -20,19 +20,20 @@ import androidx.compose.ui.unit.dp
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.NavigationType
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.resources.AppIcons
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.resources.AppStrings
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.base.UiEvent
 
 @Composable
 internal fun AppNavigationBar(
     modifier: Modifier = Modifier,
-    navigationType: NavigationType,
-    onClick: (NavigationType) -> Unit
+    currentNavigationType: NavigationType,
+    sendEvent: (UiEvent) -> Unit
 ) {
     Box(
         modifier = modifier
             .fillMaxWidth()
             .background(
                 brush = Brush.verticalGradient(
-                    colors = if (navigationType == NavigationType.Detection) {
+                    colors = if (currentNavigationType == NavigationType.Detection) {
                         listOf(
                             Color.Transparent,
                             Color.Transparent
@@ -58,8 +59,15 @@ internal fun AppNavigationBar(
                 NavigationBarItem(
                     imageVector = AppIcons.QrCode,
                     text = AppStrings.generate,
-                    isSelected = navigationType == NavigationType.Generate,
-                    onClick = { onClick(NavigationType.Generate) }
+                    isSelected = currentNavigationType == NavigationType.Generate,
+                    onClick = {
+                        sendEvent(
+                            UiEvent.ReplaceTo(
+                                navigationType = NavigationType.Generate,
+                                currentNavigationType = currentNavigationType
+                            )
+                        )
+                    }
                 )
 
                 Box(
@@ -73,7 +81,14 @@ internal fun AppNavigationBar(
                         )
                         .clip(CircleShape)
                         .background(color = MaterialTheme.colors.primary)
-                        .clickable { onClick(NavigationType.Detection) },
+                        .clickable {
+                            sendEvent(
+                                UiEvent.ReplaceTo(
+                                    navigationType = NavigationType.Detection,
+                                    currentNavigationType = currentNavigationType
+                                )
+                            )
+                        },
                     contentAlignment = Alignment.Center
                 ) {
                     Image(
@@ -86,8 +101,15 @@ internal fun AppNavigationBar(
                 NavigationBarItem(
                     imageVector = AppIcons.History,
                     text = AppStrings.history,
-                    isSelected = navigationType == NavigationType.History,
-                    onClick = { onClick(NavigationType.History) }
+                    isSelected = currentNavigationType == NavigationType.History,
+                    onClick = {
+                        sendEvent(
+                            UiEvent.ReplaceTo(
+                                navigationType = NavigationType.History,
+                                currentNavigationType = currentNavigationType
+                            )
+                        )
+                    }
                 )
             }
         }

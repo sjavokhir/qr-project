@@ -14,15 +14,15 @@ import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.comp
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.components.AppFilledButton
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.resources.AppIcons
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.resources.AppStrings
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.detection.DetectionEvent
 
 @Composable
 internal fun OnBoardingScreen(
-    modifier: Modifier = Modifier,
-    onLetsStart: () -> Unit
+    onEvent: (DetectionEvent) -> Unit
 ) {
     AppBackground {
         Column(
-            modifier = modifier
+            modifier = Modifier
                 .fillMaxSize()
                 .padding(
                     vertical = 36.dp,
@@ -50,8 +50,8 @@ internal fun OnBoardingScreen(
             )
 
             AppFilledButton(
-                text = AppStrings.actionLetsStart,
-                onClick = { onLetsStart() }
+                text = AppStrings.letsStart,
+                onClick = { onEvent(DetectionEvent.LetsStart) }
             )
         }
     }

@@ -11,12 +11,13 @@ import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.comp
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.components.AppTopBar
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.resources.AppIcons
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.resources.AppStrings
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.base.UiEvent
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.settings.SettingsScreen
 
 @Composable
 internal fun HistoryContent(
     state: HistoryState,
-    onNavigationClick: (NavigationType) -> Unit,
-    onNavigateToSettings: () -> Unit,
+    sendEvent: (UiEvent) -> Unit
 ) {
     AppBackground {
         Box {
@@ -24,14 +25,16 @@ internal fun HistoryContent(
                 AppTopBar(
                     title = AppStrings.history,
                     trailingIcon = AppIcons.Settings,
-                    onTrailingIconClick = onNavigateToSettings
+                    onTrailingIconClick = {
+                        sendEvent(UiEvent.Navigate(SettingsScreen))
+                    }
                 )
             }
 
             AppNavigationBar(
                 modifier = Modifier.align(Alignment.BottomCenter),
-                navigationType = NavigationType.History,
-                onClick = onNavigationClick
+                currentNavigationType = NavigationType.History,
+                sendEvent = sendEvent
             )
         }
     }

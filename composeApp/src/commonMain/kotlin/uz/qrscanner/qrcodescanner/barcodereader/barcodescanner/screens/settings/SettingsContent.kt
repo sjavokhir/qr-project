@@ -20,6 +20,7 @@ import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.comp
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.resources.AppIcons
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.resources.AppStrings
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.theme.Outline
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.base.UiEvent
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.shared.appUrl
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.shared.openUrl
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.shared.shareText
@@ -27,9 +28,8 @@ import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.shared.shareText
 @Composable
 internal fun SettingsContent(
     state: SettingsState,
-    onNavigateUp: () -> Unit,
-    onVibrateChecked: (Boolean) -> Unit,
-    onBeepChecked: (Boolean) -> Unit
+    onEvent: (SettingsEvent) -> Unit,
+    sendEvent: (UiEvent) -> Unit
 ) {
     AppBackground {
         Box {
@@ -56,7 +56,9 @@ internal fun SettingsContent(
                         description = AppStrings.vibrateDescription,
                         icon = AppIcons.Vibration,
                         isChecked = state.isVibrateChecked,
-                        onChecked = onVibrateChecked
+                        onChecked = {
+                            onEvent(SettingsEvent.VibrateChecked(it))
+                        }
                     )
                 }
                 item {
@@ -65,7 +67,9 @@ internal fun SettingsContent(
                         description = AppStrings.beepDescription,
                         icon = AppIcons.NotificationsActive,
                         isChecked = state.isBeepChecked,
-                        onChecked = onBeepChecked
+                        onChecked = {
+                            onEvent(SettingsEvent.BeepChecked(it))
+                        }
                     )
                 }
                 item { Spacer(modifier = Modifier.height(0.dp)) }
@@ -97,7 +101,9 @@ internal fun SettingsContent(
 
             AppTopBar(
                 title = "",
-                onNavigationClick = onNavigateUp
+                onNavigationClick = {
+                    sendEvent(UiEvent.NavigateUp)
+                }
             )
         }
     }
