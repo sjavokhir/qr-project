@@ -2,6 +2,7 @@ package uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generate
 
 import kotlinx.coroutines.flow.update
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.QrGenerateContent
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.resources.AppStrings
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.base.BaseScreenModel
 
 
@@ -9,8 +10,8 @@ class WifiScreenModel : BaseScreenModel<WifiState, WifiEvent>(WifiState()) {
 
     override fun onEvent(event: WifiEvent) {
         when (event) {
-            is WifiEvent.NetworkNameChanged -> onValueChanged(networkName = event.text)
-            is WifiEvent.PasswordChanged -> onValueChanged(password = event.text)
+            is WifiEvent.NetworkNameChanged -> onValueChanged(networkName = event.value)
+            is WifiEvent.PasswordChanged -> onValueChanged(password = event.value)
         }
     }
 
@@ -33,7 +34,10 @@ class WifiScreenModel : BaseScreenModel<WifiState, WifiEvent>(WifiState()) {
     fun getContent(): QrGenerateContent {
         return QrGenerateContent(
             qrContent = "WIFI:S:${state.value.networkName}" + ";P:" + state.value.password + ";;",
-            formattedContent = state.value.networkName + "\n" + state.value.password
+            formattedContent = """
+                ${AppStrings.network}: ${state.value.networkName}
+                ${AppStrings.password}: ${state.value.password}
+            """.trimIndent()
         )
     }
 }

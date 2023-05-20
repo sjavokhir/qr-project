@@ -30,6 +30,7 @@ class CategoriesScreenModel : BaseScreenModel<CategoriesState, CategoriesEvent>(
                 add(GenerateType.Business)
                 add(GenerateType.Location)
                 add(GenerateType.Phone)
+                add(GenerateType.Sms)
                 add(GenerateType.Email)
                 add(GenerateType.Youtube)
                 add(GenerateType.WhatsApp)

@@ -25,6 +25,7 @@ object AppIcons {
     val ShareLocation = Icons.Rounded.ShareLocation
     val Email = Icons.Rounded.MarkEmailUnread
     val PhoneCallback = Icons.Rounded.PhoneCallback
+    val Chat = Icons.Rounded.Chat
     val FlashOn = Icons.Rounded.FlashOn
     val PhotoLibrary = Icons.Rounded.PhotoLibrary
     val FlipCameraIos = Icons.Rounded.FlipCameraIos

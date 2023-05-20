@@ -18,6 +18,8 @@ import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateC
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.email.EmailScreenModel
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.phone.PhoneContent
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.phone.PhoneScreenModel
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.sms.SmsContent
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.sms.SmsScreenModel
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.socialMedia.SocialMediaContent
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.socialMedia.SocialMediaScreenModel
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.text.TextContent
@@ -97,6 +99,19 @@ data class GenerateCodeScreen(
 
                 GenerateType.Location -> {
                     Spacer(modifier = Modifier.height(56.dp))
+                }
+
+                GenerateType.Sms -> {
+                    val screenModel = rememberScreenModel { SmsScreenModel() }
+                    val state by screenModel.state.collectAsState()
+
+                    SmsContent(
+                        state = state,
+                        onEvent = screenModel::onEvent,
+                        onGenerate = {
+                            navigateToGenerate(screenModel.getContent())
+                        }
+                    )
                 }
 
                 GenerateType.Email -> {

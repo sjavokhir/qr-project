@@ -2,6 +2,7 @@ package uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generate
 
 import kotlinx.coroutines.flow.update
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.QrGenerateContent
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.resources.AppStrings
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.base.BaseScreenModel
 
 class PhoneScreenModel(
@@ -10,7 +11,7 @@ class PhoneScreenModel(
 
     override fun onEvent(event: PhoneEvent) {
         when (event) {
-            is PhoneEvent.PhoneChanged -> onValueChanged(phone = event.text)
+            is PhoneEvent.PhoneChanged -> onValueChanged(phone = event.value)
         }
     }
 
@@ -26,7 +27,7 @@ class PhoneScreenModel(
     fun getContent(): QrGenerateContent {
         return QrGenerateContent(
             qrContent = (if (isWhatsApp) "https://wa.me/" else "tel:") + state.value.phone,
-            formattedContent = state.value.phone
+            formattedContent = "${AppStrings.phoneNumber}: " + state.value.phone
         )
     }
 }

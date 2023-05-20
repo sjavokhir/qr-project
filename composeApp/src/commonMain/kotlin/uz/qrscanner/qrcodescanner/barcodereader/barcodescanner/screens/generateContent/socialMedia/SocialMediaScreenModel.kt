@@ -10,7 +10,7 @@ class SocialMediaScreenModel(private val type: GenerateType) :
 
     override fun onEvent(event: SocialMediaEvent) {
         when (event) {
-            is SocialMediaEvent.UsernameChanged -> onValueChanged(username = event.text)
+            is SocialMediaEvent.UsernameChanged -> onValueChanged(username = event.value)
         }
     }
 

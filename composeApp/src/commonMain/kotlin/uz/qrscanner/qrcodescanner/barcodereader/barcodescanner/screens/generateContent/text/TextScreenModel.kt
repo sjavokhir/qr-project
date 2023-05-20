@@ -8,7 +8,7 @@ class TextScreenModel : BaseScreenModel<TextState, TextEvent>(TextState()) {
 
     override fun onEvent(event: TextEvent) {
         when (event) {
-            is TextEvent.TextChanged -> onValueChanged(text = event.text)
+            is TextEvent.TextChanged -> onValueChanged(text = event.value)
         }
     }
 
