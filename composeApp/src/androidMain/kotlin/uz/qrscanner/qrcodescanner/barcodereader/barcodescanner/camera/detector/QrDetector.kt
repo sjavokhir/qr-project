@@ -37,7 +37,6 @@ class QrDetector(
 
     override fun onSuccess(results: MutableList<Barcode>) {
         onBarcodeParser(results.mapNotNull {
-            it.contactInfo?.addresses
             it.rawValue
         }.joinToString())
     }

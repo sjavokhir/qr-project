@@ -26,7 +26,7 @@ fun WebsiteContent(
                 onEvent(WebsiteEvent.WebsiteChanged(it))
             },
             hint = AppStrings.websiteUrl,
-            placeholder = AppStrings.googleCom
+            placeholder = AppStrings.egGoogle
         )
 
         AppFilledButton(

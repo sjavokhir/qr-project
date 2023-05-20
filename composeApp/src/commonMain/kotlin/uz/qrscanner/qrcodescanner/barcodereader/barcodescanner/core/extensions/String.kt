@@ -1,9 +1,9 @@
 package uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.core.extensions
 
-fun String.replaceSeparator(): String {
+fun String.removeSeparator(): String {
     return replace("\n", "")
 }
 
-fun String.replaceSpace(): String {
+fun String.removeSpace(): String {
     return replace(" ", "")
 }

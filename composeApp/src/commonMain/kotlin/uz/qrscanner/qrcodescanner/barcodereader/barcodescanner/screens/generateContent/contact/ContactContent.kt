@@ -23,20 +23,20 @@ fun ContactContent(
         verticalArrangement = Arrangement.spacedBy(20.dp)
     ) {
         AppTextField(
-            value = state.firstname,
+            value = state.firstName,
             onValueChange = {
                 onEvent(ContactEvent.FirstNameChanged(it))
             },
-            hint = AppStrings.firstname,
+            hint = AppStrings.firstName,
             placeholder = AppStrings.enterName
         )
 
         AppTextField(
-            value = state.lastname,
+            value = state.lastName,
             onValueChange = {
                 onEvent(ContactEvent.LastNameChanged(it))
             },
-            hint = AppStrings.lastname,
+            hint = AppStrings.lastName,
             placeholder = AppStrings.enterName
         )
 

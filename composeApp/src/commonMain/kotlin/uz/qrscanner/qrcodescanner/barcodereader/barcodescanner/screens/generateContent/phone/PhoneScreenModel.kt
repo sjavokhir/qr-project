@@ -1,7 +1,7 @@
 package uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.phone
 
 import kotlinx.coroutines.flow.update
-import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.core.extensions.replaceSpace
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.core.extensions.removeSpace
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.QrGenerateContent
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.resources.AppStrings
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.base.BaseScreenModel
@@ -18,7 +18,7 @@ class PhoneScreenModel(
 
     private fun onValueChanged(phone: String) {
         stateData.update {
-            val mPhone = phone.replaceSpace()
+            val mPhone = phone.removeSpace()
 
             it.copy(
                 phone = mPhone,

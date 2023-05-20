@@ -1,7 +1,7 @@
 package uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.contact
 
 import kotlinx.coroutines.flow.update
-import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.core.extensions.replaceSeparator
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.core.extensions.removeSeparator
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.QrGenerateContent
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.base.BaseScreenModel
 
@@ -10,8 +10,8 @@ class ContactScreenModel : BaseScreenModel<ContactState, ContactEvent>(ContactSt
 
     override fun onEvent(event: ContactEvent) {
         when (event) {
-            is ContactEvent.FirstNameChanged -> onValueChanged(firstname = event.value)
-            is ContactEvent.LastNameChanged -> onValueChanged(lastname = event.value)
+            is ContactEvent.FirstNameChanged -> onValueChanged(firstName = event.value)
+            is ContactEvent.LastNameChanged -> onValueChanged(lastName = event.value)
             is ContactEvent.PhoneChanged -> onValueChanged(phone = event.value)
             is ContactEvent.EmailChanged -> onValueChanged(email = event.value)
             is ContactEvent.WebsiteChanged -> onValueChanged(website = event.value)
@@ -20,46 +20,53 @@ class ContactScreenModel : BaseScreenModel<ContactState, ContactEvent>(ContactSt
     }
 
     private fun onValueChanged(
-        firstname: String? = null,
-        lastname: String? = null,
+        firstName: String? = null,
+        lastName: String? = null,
         phone: String? = null,
         email: String? = null,
         website: String? = null,
         address: String? = null
     ) {
         stateData.update {
-            val mFirstname = (firstname ?: it.firstname).replaceSeparator()
-            val mLastname = (lastname ?: it.lastname).replaceSeparator()
-            val mPhone = (phone ?: it.phone).replaceSeparator()
-            val mEmail = (email ?: it.email).replaceSeparator()
-            val mWebsite = (website ?: it.website).replaceSeparator()
+            val mFirstName = (firstName ?: it.firstName).removeSeparator()
+            val mLastName = (lastName ?: it.lastName).removeSeparator()
+            val mPhone = (phone ?: it.phone).removeSeparator()
+            val mEmail = (email ?: it.email).removeSeparator()
+            val mWebsite = (website ?: it.website).removeSeparator()
             val mAddress = address ?: it.address
 
             it.copy(
-                firstname = mFirstname,
-                lastname = mLastname,
+                firstName = mFirstName,
+                lastName = mLastName,
                 phone = mPhone,
                 email = mEmail,
                 website = mWebsite,
                 address = mAddress,
-                isEnabled = (mFirstname.isNotEmpty() || mLastname.isNotEmpty()) &&
+                isEnabled = (mFirstName.isNotEmpty() || mLastName.isNotEmpty()) &&
                         mPhone.isNotEmpty()
             )
         }
     }
 
     fun getContent(): QrGenerateContent {
-        val qrContent = buildString {
+        return QrGenerateContent(
+            qrContent = buildQrContent(),
+            formattedContent = buildFormattedContent()
+        )
+    }
+
+    private fun buildQrContent(): String {
+        return buildString {
             append("BEGIN:VCARD\n")
             append("VERSION:3.0\n")
 
             // Name
             append("N:")
-                .append(state.value.lastname).append(";")
-                .append(state.value.firstname).append(";;;\n")
+                .append(state.value.lastName).append(";")
+                .append(state.value.firstName).append(";;;\n")
             append("FN:")
-                .append(state.value.firstname).append(" ")
-                .append(state.value.lastname).append("\n")
+                .append(state.value.firstName).append(" ")
+                .append(state.value.lastName).append("\n")
 
             // Phone
             append("TEL;TYPE=WORK,VOICE:").append(state.value.phone).append("\n")
@@ -75,10 +82,16 @@ class ContactScreenModel : BaseScreenModel<ContactState, ContactEvent>(ContactSt
 
             append("END:VCARD")
         }
-        
-        return QrGenerateContent(
-            qrContent = qrContent,
-            formattedContent = ""
-        )
+    }
+
+    private fun buildFormattedContent(): String {
+        return buildString {
+            append("First Name: ${state.value.firstName}\n")
+            append("Last Name: ${state.value.lastName}\n")
+            append("Phone: ${state.value.phone}\n")
+            append("Email: ${state.value.email}\n")
+            append("Website: ${state.value.website}\n")
+            append("Address: ${state.value.address}\n")
+        }
     }
 }

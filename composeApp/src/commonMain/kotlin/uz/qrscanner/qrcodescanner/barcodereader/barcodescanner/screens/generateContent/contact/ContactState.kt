@@ -1,8 +1,8 @@
 package uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.contact
 
 data class ContactState(
-    val firstname: String = "",
-    val lastname: String = "",
+    val firstName: String = "",
+    val lastName: String = "",
     val phone: String = "",
     val email: String = "",
     val website: String = "",

@@ -1,8 +1,8 @@
 package uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.socialMedia
 
 import kotlinx.coroutines.flow.update
-import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.core.extensions.replaceSeparator
-import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.core.extensions.replaceSpace
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.core.extensions.removeSeparator
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.core.extensions.removeSpace
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.GenerateType
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.QrGenerateContent
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.base.BaseScreenModel
@@ -18,8 +18,8 @@ class SocialMediaScreenModel(private val type: GenerateType) :
 
     private fun onValueChanged(username: String) {
         val mUsername = username
-            .replaceSeparator()
-            .replaceSpace()
+            .removeSeparator()
+            .removeSpace()
 
         stateData.update {
             it.copy(

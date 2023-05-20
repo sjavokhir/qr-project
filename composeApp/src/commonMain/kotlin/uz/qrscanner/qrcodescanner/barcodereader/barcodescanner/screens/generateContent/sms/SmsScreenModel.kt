@@ -1,7 +1,7 @@
 package uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.sms
 
 import kotlinx.coroutines.flow.update
-import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.core.extensions.replaceSpace
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.core.extensions.removeSpace
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.QrGenerateContent
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.resources.AppStrings
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.base.BaseScreenModel
@@ -22,7 +22,7 @@ class SmsScreenModel : BaseScreenModel<SmsState, SmsEvent>(SmsState()) {
     ) {
         stateData.update {
             val mMessage = message ?: it.message
-            val mPhoneNumber = (phoneNumber ?: it.phoneNumber).replaceSpace()
+            val mPhoneNumber = (phoneNumber ?: it.phoneNumber).removeSpace()
 
             it.copy(
                 message = mMessage,

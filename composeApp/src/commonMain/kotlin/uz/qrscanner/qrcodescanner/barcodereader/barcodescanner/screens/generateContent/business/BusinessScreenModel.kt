@@ -1,7 +1,7 @@
 package uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.business
 
 import kotlinx.coroutines.flow.update
-import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.core.extensions.replaceSeparator
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.core.extensions.removeSeparator
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.QrGenerateContent
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.base.BaseScreenModel
 
@@ -28,11 +28,11 @@ class BusinessScreenModel : BaseScreenModel<BusinessState, BusinessEvent>(Busine
         address: String? = null
     ) {
         stateData.update {
-            val mName = (name ?: it.name).replaceSeparator()
-            val mIndustry = (industry ?: it.industry).replaceSeparator()
-            val mPhone = (phone ?: it.phone).replaceSeparator()
-            val mEmail = (email ?: it.email).replaceSeparator()
-            val mWebsite = (website ?: it.website).replaceSeparator()
+            val mName = (name ?: it.name).removeSeparator()
+            val mIndustry = (industry ?: it.industry).removeSeparator()
+            val mPhone = (phone ?: it.phone).removeSeparator()
+            val mEmail = (email ?: it.email).removeSeparator()
+            val mWebsite = (website ?: it.website).removeSeparator()
             val mAddress = address ?: it.address
 
             it.copy(
@@ -49,7 +49,14 @@ class BusinessScreenModel : BaseScreenModel<BusinessState, BusinessEvent>(Busine
     }
 
     fun getContent(): QrGenerateContent {
-        val qrContent = buildString {
+        return QrGenerateContent(
+            qrContent = buildQrContent(),
+            formattedContent = buildFormattedContent()
+        )
+    }
+
+    private fun buildQrContent(): String {
+        return buildString {
             append("BEGIN:VCARD\n")
             append("VERSION:3.0\n")
 
@@ -71,10 +78,16 @@ class BusinessScreenModel : BaseScreenModel<BusinessState, BusinessEvent>(Busine
 
             append("END:VCARD")
         }
+    }
 
-        return QrGenerateContent(
-            qrContent = qrContent,
-            formattedContent = ""
-        )
+    private fun buildFormattedContent(): String {
+        return buildString {
+            append("Company Name: ${state.value.name}\n")
+            append("Industry: ${state.value.industry}\n")
+            append("Phone: ${state.value.phone}\n")
+            append("Email: ${state.value.email}\n")
+            append("Website: ${state.value.website}\n")
+            append("Address: ${state.value.address}\n")
+        }
     }
 }
