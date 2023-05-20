@@ -14,12 +14,16 @@ import cafe.adriel.voyager.navigator.currentOrThrow
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.GenerateType
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.QrGenerateContent
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generate.GenerateScreen
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.business.BusinessContent
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.business.BusinessScreenModel
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.contact.ContactContent
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.contact.ContactScreenModel
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.driverLicense.DriverLicenseContent
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.driverLicense.DriverLicenseScreenModel
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.email.EmailContent
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.email.EmailScreenModel
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.location.LocationContent
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.location.LocationScreenModel
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.phone.PhoneContent
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.phone.PhoneScreenModel
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.sms.SmsContent
@@ -107,7 +111,16 @@ data class GenerateCodeScreen(
                 }
 
                 GenerateType.Business -> {
-                    Spacer(modifier = Modifier.height(56.dp))
+                    val screenModel = rememberScreenModel { BusinessScreenModel() }
+                    val state by screenModel.state.collectAsState()
+
+                    BusinessContent(
+                        state = state,
+                        onEvent = screenModel::onEvent,
+                        onGenerate = {
+                            navigateToGenerate(screenModel.getContent())
+                        }
+                    )
                 }
 
                 GenerateType.DriverLicense -> {
@@ -124,7 +137,16 @@ data class GenerateCodeScreen(
                 }
 
                 GenerateType.Location -> {
-                    Spacer(modifier = Modifier.height(56.dp))
+                    val screenModel = rememberScreenModel { LocationScreenModel() }
+                    val state by screenModel.state.collectAsState()
+
+                    LocationContent(
+                        state = state,
+                        onEvent = screenModel::onEvent,
+                        onGenerate = {
+                            navigateToGenerate(screenModel.getContent())
+                        }
+                    )
                 }
 
                 GenerateType.Sms -> {

@@ -8,7 +8,11 @@ androidx-camerax = "1.2.2"
 compose-activity = "1.7.1"
 compose-uitooling = "1.4.3"
 compose-accompanist-permissions = "0.29.2-rc"
+compose-maps = "2.11.2"
 google-material = "1.9.0"
+google-mapsplatform-secrets = "2.0.1"
+google-playservices-maps = "18.1.0"
+google-playservices-location = "21.0.1"
 google-mlkit-barcode = "18.2.0"
 google-zxing = "3.4.1"
 google-zxing-embedded = "4.3.0"
@@ -29,12 +33,15 @@ androidx-camera-view = { module = "androidx.camera:camera-view", version.ref = "
 compose-uitooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose-uitooling" }
 compose-activity = { module = "androidx.activity:activity-compose", version.ref = "compose-activity" }
 compose-accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "compose-accompanist-permissions" }
+compose-maps = { module = "com.google.maps.android:maps-compose", version.ref = "compose-maps" }
 
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
 
 google-material = { module = "com.google.android.material:material", version.ref = "google-material" }
+google-playservices-maps = { module = "com.google.android.gms:play-services-maps", version.ref = "google-playservices-maps" }
+google-playservices-location = { module = "com.google.android.gms:play-services-location", version.ref = "google-playservices-location" }
 google-mlkit-barcode = { module = "com.google.android.gms:play-services-mlkit-barcode-scanning", version.ref = "google-mlkit-barcode" }
 google-zxing = { module = "com.google.zxing:core", version.ref = "google-zxing" }
 google-zxing-embedded = { module = "com.journeyapps:zxing-android-embedded", version.ref = "google-zxing-embedded" }
@@ -58,3 +65,4 @@ multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotl
 cocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
 compose = { id = "org.jetbrains.compose", version.ref = "compose" }
 sqlDelight = { id = "app.cash.sqldelight", version.ref = "sqlDelight" }
+mapsplatform-secrets = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "google-mapsplatform-secrets" }

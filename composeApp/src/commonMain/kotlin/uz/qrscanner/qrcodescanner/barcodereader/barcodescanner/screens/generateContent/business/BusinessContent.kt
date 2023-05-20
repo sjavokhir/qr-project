@@ -13,7 +13,7 @@ import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.comp
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.resources.AppStrings
 
 @Composable
-fun ContactContent(
+fun BusinessContent(
     state: BusinessState,
     onEvent: (BusinessEvent) -> Unit,
     onGenerate: () -> Unit

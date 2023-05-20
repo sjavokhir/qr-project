@@ -1,9 +1,10 @@
 plugins {
+    alias(libs.plugins.android.application)
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.compose)
     alias(libs.plugins.cocoapods)
-    alias(libs.plugins.android.application)
     alias(libs.plugins.sqlDelight)
+    alias(libs.plugins.mapsplatform.secrets)
 }
 
 kotlin {
@@ -61,7 +62,10 @@ kotlin {
                 implementation(libs.compose.uitooling)
                 implementation(libs.compose.activity)
                 implementation(libs.compose.accompanist.permissions)
+                implementation(libs.compose.maps)
                 implementation(libs.google.material)
+                implementation(libs.google.playservices.maps)
+                implementation(libs.google.playservices.location)
                 implementation(libs.google.mlkit.barcode)
                 implementation(libs.google.zxing.embedded)
                 implementation(libs.kotlinx.coroutines.android)
@@ -130,4 +134,9 @@ sqldelight {
       packageName.set("uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.db")
     }
   }
+}
+
+secrets {
+    defaultPropertiesFileName = "default.local.properties"
+    propertiesFileName = "local.properties"
 }

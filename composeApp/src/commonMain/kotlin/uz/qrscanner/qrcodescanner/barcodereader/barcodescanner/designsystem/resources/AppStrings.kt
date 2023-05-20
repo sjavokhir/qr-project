@@ -81,6 +81,8 @@ object AppStrings {
     const val expiryDate = "Expiry date"
     const val birthDate = "Birth date"
     const val issuingCountry = "Issuing country"
+    const val latitude = "Latitude"
+    const val longitude = "Longitude"
 
     fun enterUsername(type: GenerateType): String {
         return "Enter ${type.title} username"
