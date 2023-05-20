@@ -21,25 +21,23 @@ class SmsScreenModel : BaseScreenModel<SmsState, SmsEvent>(SmsState()) {
         phoneNumber: String? = null
     ) {
         stateData.update {
-            val newMessage = message ?: it.message
-            val newPhoneNumber = phoneNumber ?: it.phoneNumber
+            val mMessage = message ?: it.message
+            val mPhoneNumber = (phoneNumber ?: it.phoneNumber).replaceSpace()
 
             it.copy(
-                message = newMessage,
-                phoneNumber = newPhoneNumber,
-                isEnabled = newMessage.isNotEmpty() && newPhoneNumber
-                    .replaceSpace()
-                    .isNotEmpty()
+                message = mMessage,
+                phoneNumber = mPhoneNumber,
+                isEnabled = mMessage.isNotEmpty() && mPhoneNumber.isNotEmpty()
             )
         }
     }
 
     fun getContent(): QrGenerateContent {
         return QrGenerateContent(
-            qrContent = "sms:" + state.value.phoneNumber.replaceSpace() + "?body=" + state.value.message,
+            qrContent = "sms:" + state.value.phoneNumber + "?body=" + state.value.message,
             formattedContent = """
                 ${AppStrings.message}: ${state.value.message}
-                ${AppStrings.phoneNumber}: ${state.value.phoneNumber.replaceSpace()}
+                ${AppStrings.phoneNumber}: ${state.value.phoneNumber}
             """.trimIndent()
         )
     }

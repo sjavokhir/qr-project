@@ -19,7 +19,9 @@ fun HistoryContent(
     sendEvent: (UiEvent) -> Unit
 ) {
     Box {
-        Column(modifier = Modifier.align(Alignment.TopCenter)) {
+        Column(
+            modifier = Modifier.align(Alignment.TopCenter)
+        ) {
             AppTopBar(
                 title = AppStrings.history,
                 trailingIcon = AppIcons.Settings,

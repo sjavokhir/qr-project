@@ -2,7 +2,11 @@ package uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.com
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.MaterialTheme
@@ -12,7 +16,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.theme.Outline
 
@@ -22,17 +28,21 @@ fun AppTextField(
     onValueChange: (String) -> Unit,
     hint: String,
     placeholder: String,
-    keyboardType: KeyboardType = KeyboardType.Text
+    keyboardType: KeyboardType = KeyboardType.Text,
+    singleLine: Boolean = true,
+    modifier: Modifier = Modifier
 ) {
     BasicTextField(
         value = value,
         onValueChange = onValueChange,
+        modifier = modifier,
         textStyle = MaterialTheme.typography.body1.copy(
             color = MaterialTheme.colors.onBackground
         ),
-        singleLine = keyboardType != KeyboardType.Text,
+        singleLine = singleLine,
         keyboardOptions = KeyboardOptions(
-            keyboardType = keyboardType
+            keyboardType = keyboardType,
+            imeAction = if (singleLine) ImeAction.Done else ImeAction.Default
         ),
         cursorBrush = Brush.horizontalGradient(colors = listOf(Outline, Outline)),
         decorationBox = { innerTextField ->
@@ -62,7 +72,9 @@ fun AppTextField(
                         Text(
                             text = placeholder,
                             style = MaterialTheme.typography.body1,
-                            color = Outline.copy(alpha = 0.7f)
+                            color = Outline.copy(alpha = 0.7f),
+                            maxLines = if (singleLine) 1 else Int.MAX_VALUE,
+                            overflow = TextOverflow.Ellipsis
                         )
                     }
                     innerTextField()

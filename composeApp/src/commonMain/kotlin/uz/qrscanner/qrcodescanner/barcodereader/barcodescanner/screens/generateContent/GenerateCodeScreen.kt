@@ -14,6 +14,8 @@ import cafe.adriel.voyager.navigator.currentOrThrow
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.GenerateType
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.QrGenerateContent
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generate.GenerateScreen
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.contact.ContactContent
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.contact.ContactScreenModel
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.email.EmailContent
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.email.EmailScreenModel
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.phone.PhoneContent
@@ -90,7 +92,16 @@ data class GenerateCodeScreen(
                 }
 
                 GenerateType.Contact -> {
-                    Spacer(modifier = Modifier.height(56.dp))
+                    val screenModel = rememberScreenModel { ContactScreenModel() }
+                    val state by screenModel.state.collectAsState()
+
+                    ContactContent(
+                        state = state,
+                        onEvent = screenModel::onEvent,
+                        onGenerate = {
+                            navigateToGenerate(screenModel.getContent())
+                        }
+                    )
                 }
 
                 GenerateType.Business -> {

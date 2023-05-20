@@ -50,7 +50,12 @@ object AppStrings {
     const val enterPhoneNumber = "Enter phone number"
     const val enterPassword = "Enter password"
     const val enterNetworkName = "Enter network name"
+    const val enterName = "Enter name"
     const val enterMessage = "Enter message"
+    const val enterWebsite = "Enter website"
+    const val enterAddress = "Enter address"
+    const val firstname = "First name"
+    const val lastname = "Last name"
     const val password = "Password"
     const val googleCom = "google.com"
     const val username = "Username"
@@ -60,6 +65,10 @@ object AppStrings {
     const val message = "Message"
     const val copied = "Copied"
     const val driverLicense = "Driver license"
+    const val address = "Address"
+    const val companyName = "Company name"
+    const val industry = "Industry"
+    const val egIndustry = "e.g Food/Agency"
 
     fun enterUsername(type: GenerateType): String {
         return "Enter ${type.title} username"

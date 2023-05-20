@@ -18,19 +18,19 @@ class PhoneScreenModel(
 
     private fun onValueChanged(phone: String) {
         stateData.update {
+            val mPhone = phone.replaceSpace()
+
             it.copy(
-                phone = phone,
-                isEnabled = phone
-                    .replaceSpace()
-                    .isNotEmpty()
+                phone = mPhone,
+                isEnabled = mPhone.isNotEmpty()
             )
         }
     }
 
     fun getContent(): QrGenerateContent {
         return QrGenerateContent(
-            qrContent = (if (isWhatsApp) "https://wa.me/" else "tel:") + state.value.phone.replaceSpace(),
-            formattedContent = "${AppStrings.phoneNumber}: " + state.value.phone.replaceSpace()
+            qrContent = (if (isWhatsApp) "https://wa.me/" else "tel:") + state.value.phone,
+            formattedContent = "${AppStrings.phoneNumber}: " + state.value.phone
         )
     }
 }

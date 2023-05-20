@@ -1,7 +1,7 @@
 package uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.wifi
 
 import kotlinx.coroutines.flow.update
-import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.core.extensions.replaceTrim
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.core.extensions.replaceSeparator
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.QrGenerateContent
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.resources.AppStrings
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.base.BaseScreenModel
@@ -21,24 +21,22 @@ class WifiScreenModel : BaseScreenModel<WifiState, WifiEvent>(WifiState()) {
         password: String? = null
     ) {
         stateData.update {
-            val newNetworkName = networkName ?: it.networkName
-            val newPassword = password ?: it.password
+            val mNetworkName = (networkName ?: it.networkName).replaceSeparator()
+            val mPassword = (password ?: it.password).replaceSeparator()
 
             it.copy(
-                networkName = newNetworkName,
-                password = newPassword,
-                isEnabled = newNetworkName
-                    .replaceTrim()
-                    .isNotEmpty() && newPassword.isNotEmpty()
+                networkName = mNetworkName,
+                password = mPassword,
+                isEnabled = mNetworkName.isNotEmpty() && mPassword.isNotEmpty()
             )
         }
     }
 
     fun getContent(): QrGenerateContent {
         return QrGenerateContent(
-            qrContent = "WIFI:S:${state.value.networkName.replaceTrim()}" + ";P:" + state.value.password + ";;",
+            qrContent = "WIFI:S:${state.value.networkName}" + ";P:" + state.value.password + ";;",
             formattedContent = """
-                ${AppStrings.network}: ${state.value.networkName.replaceTrim()}
+                ${AppStrings.network}: ${state.value.networkName}
                 ${AppStrings.password}: ${state.value.password}
             """.trimIndent()
         )
