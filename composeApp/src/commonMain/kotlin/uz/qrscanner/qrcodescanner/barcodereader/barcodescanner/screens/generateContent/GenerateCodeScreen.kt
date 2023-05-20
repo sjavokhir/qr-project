@@ -114,11 +114,14 @@ data class GenerateCodeScreen(
 
                 GenerateType.Phone,
                 GenerateType.WhatsApp -> {
-                    val screenModel = rememberScreenModel { PhoneScreenModel() }
+                    val screenModel = rememberScreenModel {
+                        PhoneScreenModel(type == GenerateType.WhatsApp)
+                    }
                     val state by screenModel.state.collectAsState()
 
                     PhoneContent(
                         state = state,
+                        isWhatsApp = type == GenerateType.WhatsApp,
                         onEvent = screenModel::onEvent,
                         onGenerate = {
                             navigateToGenerate(screenModel.getContent())
