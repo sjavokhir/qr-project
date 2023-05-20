@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 @Composable
-internal fun SurfaceContent(
+fun SurfaceContent(
     modifier: Modifier = Modifier,
     elevation: Dp = 8.dp,
     shape: Shape = MaterialTheme.shapes.medium,

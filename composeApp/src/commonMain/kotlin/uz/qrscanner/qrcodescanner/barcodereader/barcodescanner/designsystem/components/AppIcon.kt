@@ -8,7 +8,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 
 @Composable
-internal fun AppIcon(
+fun AppIcon(
     modifier: Modifier = Modifier,
     imageVector: ImageVector,
     tint: Color = MaterialTheme.colors.primary

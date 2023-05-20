@@ -11,13 +11,13 @@ import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.detection
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.history.HistoryScreen
 
 @Composable
-internal fun App() = QrTheme {
+fun App() = QrTheme {
     Navigator(DetectionScreen) {
         Scaffold { CurrentScreen() }
     }
 }
 
-internal fun Navigator.replaceTo(
+fun Navigator.replaceTo(
     navigationType: NavigationType,
     currentNavigationType: NavigationType
 ) {

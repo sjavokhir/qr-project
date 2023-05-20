@@ -13,7 +13,7 @@ import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.comp
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.components.SurfaceContent
 
 @Composable
-internal fun GenerateCodeContent(
+fun GenerateCodeContent(
     type: GenerateType,
     onNavigateUp: () -> Unit,
     content: @Composable () -> Unit

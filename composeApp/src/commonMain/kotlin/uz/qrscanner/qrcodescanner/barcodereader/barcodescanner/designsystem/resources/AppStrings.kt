@@ -2,7 +2,7 @@ package uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.res
 
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.GenerateType
 
-internal object AppStrings {
+object AppStrings {
     const val appName = "QR"
     const val loading = "Loading..."
     const val onBoardingDescription = "Go and enjoy our features for free and make your life easy with us."
@@ -55,6 +55,8 @@ internal object AppStrings {
     const val phoneNumber = "Phone number"
     const val network = "Network"
     const val ok = "OK"
+    const val message = "Message"
+    const val copied = "Copied"
 
     fun enterUsername(type: GenerateType): String {
         return "Enter ${type.title} username"

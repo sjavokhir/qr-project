@@ -41,12 +41,11 @@ kotlin {
                 implementation(libs.kotlinx.coroutines.core)
                 implementation(libs.kotlinx.datetime)
                 implementation(libs.koin.core)
-                implementation(libs.voyager.navigator)
-                implementation(libs.multiplatformSettings)
                 implementation(libs.sqlDelight.extensions)
+                implementation(libs.multiplatformSettings)
+                implementation(libs.voyager.navigator)
             }
         }
-
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
@@ -56,20 +55,18 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation(libs.androidx.appcompat)
-                implementation(libs.androidx.activityCompose)
+                implementation(libs.androidx.camera.camera2)
+                implementation(libs.androidx.camera.lifecycle)
+                implementation(libs.androidx.camera.view)
                 implementation(libs.compose.uitooling)
+                implementation(libs.compose.activity)
+                implementation(libs.compose.accompanist.permissions)
                 implementation(libs.google.material)
+                implementation(libs.google.mlkit.barcode)
+                implementation(libs.google.zxing.embedded)
                 implementation(libs.kotlinx.coroutines.android)
                 implementation(libs.koin.android)
                 implementation(libs.sqlDelight.driver.android)
-
-                implementation("androidx.camera:camera-camera2:1.2.2")
-                implementation("androidx.camera:camera-lifecycle:1.2.2")
-                implementation("androidx.camera:camera-view:1.2.2")
-
-                implementation("com.google.accompanist:accompanist-permissions:0.29.2-rc")
-                implementation("com.google.android.gms:play-services-mlkit-barcode-scanning:18.2.0")
-                implementation("com.google.zxing:core:3.4.1")
             }
         }
 
@@ -104,7 +101,7 @@ android {
 
     defaultConfig {
         applicationId = "uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.android"
-        minSdk = 23
+        minSdk = 24
         targetSdk = 33
         versionCode = 1
         versionName = "1.0.0"

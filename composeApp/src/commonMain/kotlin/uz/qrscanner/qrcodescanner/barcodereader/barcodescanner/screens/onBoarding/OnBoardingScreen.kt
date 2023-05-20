@@ -16,7 +16,7 @@ import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.reso
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.detection.DetectionEvent
 
 @Composable
-internal fun OnBoardingScreen(
+fun OnBoardingScreen(
     onEvent: (DetectionEvent) -> Unit
 ) {
     Column(

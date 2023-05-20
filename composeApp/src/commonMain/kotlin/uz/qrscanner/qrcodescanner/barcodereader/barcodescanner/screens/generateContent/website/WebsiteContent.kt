@@ -9,7 +9,7 @@ import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.comp
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.resources.AppStrings
 
 @Composable
-internal fun WebsiteContent(
+fun WebsiteContent(
     state: WebsiteState,
     onEvent: (WebsiteEvent) -> Unit,
     onGenerate: () -> Unit

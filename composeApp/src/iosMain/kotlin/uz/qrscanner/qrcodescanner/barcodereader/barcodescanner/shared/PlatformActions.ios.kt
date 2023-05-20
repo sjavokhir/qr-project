@@ -1,15 +1,22 @@
 package uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.shared
 
 import platform.Foundation.NSURL
-import platform.UIKit.*
+import platform.UIKit.UIActivityViewController
+import platform.UIKit.UIAlertAction
+import platform.UIKit.UIAlertActionStyleDefault
+import platform.UIKit.UIAlertController
+import platform.UIKit.UIAlertControllerStyleAlert
+import platform.UIKit.UIApplication
+import platform.UIKit.UIPasteboard
+import platform.UIKit.UIWindow
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.resources.AppStrings
 
 actual fun toast(message: String) {
     val window = UIApplication.sharedApplication.windows.last() as? UIWindow
     val currentViewController = window?.rootViewController
     val alert = UIAlertController.alertControllerWithTitle(
-        title = message,
-        message = null,
+        title = AppStrings.message,
+        message = message,
         preferredStyle = UIAlertControllerStyleAlert
     )
     alert.addAction(
@@ -43,4 +50,9 @@ actual fun shareText(text: String) {
         animated = true,
         completion = null,
     )
+}
+
+actual fun copyText(text: String) {
+    UIPasteboard.generalPasteboard.setString(text)
+    toast(AppStrings.copied)
 }

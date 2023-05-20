@@ -36,7 +36,9 @@ class QrDetector(
     }
 
     override fun onSuccess(results: MutableList<Barcode>) {
-        onBarcodeParser(results.mapNotNull { it.rawValue }.joinToString())
+        onBarcodeParser(results.mapNotNull {
+            it.rawValue
+        }.joinToString())
     }
 
     override fun onFailure(t: Throwable) {}

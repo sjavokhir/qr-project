@@ -1,11 +1,11 @@
 package uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.wifi
 
 import kotlinx.coroutines.flow.update
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.QrGenerateContent
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.base.BaseScreenModel
 
-class WifiScreenModel : BaseScreenModel<WifiState, WifiEvent>() {
 
-    override fun defaultState(): WifiState = WifiState()
+class WifiScreenModel : BaseScreenModel<WifiState, WifiEvent>(WifiState()) {
 
     override fun onEvent(event: WifiEvent) {
         when (event) {
@@ -27,7 +27,10 @@ class WifiScreenModel : BaseScreenModel<WifiState, WifiEvent>() {
         }
     }
 
-    fun getGenerateQrCode(): String {
-        return state.value.networkName + state.value.password
+    fun getContent(): QrGenerateContent {
+        return QrGenerateContent(
+            qrContent = "WIFI:S:${state.value.networkName}" + ";P:" + state.value.password + ";;",
+            formattedContent = state.value.networkName + "\n" + state.value.password
+        )
     }
 }

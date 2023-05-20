@@ -1,8 +1,17 @@
 package uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generate
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
@@ -12,50 +21,67 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.painter.BitmapPainter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.GenerateType
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.QrGenerateContent
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.components.AppBackground
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.components.AppIcon
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.components.AppTopBar
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.components.SurfaceContent
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.resources.AppIcons
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.resources.AppStrings
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.theme.Outline
-import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.base.UiEvent
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.shared.copyText
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.shared.shareText
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.view.rememberQrBitmapPainter
 
 @Composable
-internal fun GenerateContent(
-    state: GenerateState,
+fun GenerateContent(
+    content: QrGenerateContent,
     type: GenerateType,
-    sendEvent: (UiEvent) -> Unit
+    datetime: String,
+    onNavigateUp: () -> Unit
 ) {
-    Box {
-        LazyColumn(
-            contentPadding = PaddingValues(
-                start = 20.dp,
-                end = 20.dp,
-                top = 100.dp,
-                bottom = 20.dp
-            ),
-            verticalArrangement = Arrangement.spacedBy(32.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            item { GenerateInfo(type = type) }
-            item { GenerateActions() }
-        }
+    val bitmapPainter = rememberQrBitmapPainter(
+        content = content.qrContent,
+        size = 400.dp,
+        padding = 1.dp
+    )
 
-        AppTopBar(
-            title = AppStrings.result,
-            onNavigationClick = {
-                sendEvent(UiEvent.NavigateUp)
+    AppBackground {
+        Box {
+            LazyColumn(
+                contentPadding = PaddingValues(
+                    start = 20.dp,
+                    end = 20.dp,
+                    top = 100.dp,
+                    bottom = 120.dp
+                ),
+                verticalArrangement = Arrangement.spacedBy(32.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                item { GenerateInfo(content.formattedContent, type, datetime) }
+                item { GenerateQrImage(bitmapPainter) }
+                item { GenerateActions(content.formattedContent) }
             }
-        )
+
+            AppTopBar(
+                title = AppStrings.result,
+                onNavigationClick = onNavigateUp
+            )
+        }
     }
 }
 
 @Composable
-private fun GenerateInfo(type: GenerateType) {
+private fun GenerateInfo(
+    content: String,
+    type: GenerateType,
+    datetime: String
+) {
     SurfaceContent {
         Column(
             modifier = Modifier
@@ -82,8 +108,8 @@ private fun GenerateInfo(type: GenerateType) {
                         color = MaterialTheme.colors.onBackground
                     )
                     Text(
-                        text = "16 Dec 2022, 9:30 pm",
-                        style = MaterialTheme.typography.caption,
+                        text = datetime,
+                        style = MaterialTheme.typography.body2,
                         color = Outline
                     )
                 }
@@ -92,7 +118,7 @@ private fun GenerateInfo(type: GenerateType) {
             Divider(color = Outline.copy(alpha = 0.5f))
 
             Text(
-                text = "https://www.youtube.com/watch?v=Zd9g7sKvgIM",
+                text = content,
                 style = MaterialTheme.typography.body1,
                 color = MaterialTheme.colors.onBackground
             )
@@ -101,7 +127,25 @@ private fun GenerateInfo(type: GenerateType) {
 }
 
 @Composable
-private fun GenerateActions() {
+private fun GenerateQrImage(
+    bitmapPainter: BitmapPainter
+) {
+    Image(
+        painter = bitmapPainter,
+        contentDescription = null,
+        modifier = Modifier
+            .size(160.dp)
+            .clip(MaterialTheme.shapes.medium)
+            .border(
+                width = 4.dp,
+                color = MaterialTheme.colors.primary,
+                shape = MaterialTheme.shapes.medium
+            )
+    )
+}
+
+@Composable
+private fun GenerateActions(content: String) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
@@ -113,12 +157,12 @@ private fun GenerateActions() {
         GenerateButton(
             text = AppStrings.share,
             icon = AppIcons.Share,
-            onClick = {}
+            onClick = { shareText(content) }
         )
         GenerateButton(
             text = AppStrings.copy,
             icon = AppIcons.Copy,
-            onClick = {}
+            onClick = { copyText(content) }
         )
         GenerateButton(
             text = AppStrings.save,

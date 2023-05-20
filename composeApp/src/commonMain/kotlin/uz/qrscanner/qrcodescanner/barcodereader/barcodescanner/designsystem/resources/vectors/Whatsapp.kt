@@ -10,7 +10,7 @@ import androidx.compose.ui.graphics.vector.ImageVector.Builder
 import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
 
-internal val WhatsAppIcon: ImageVector
+val WhatsAppIcon: ImageVector
     get() {
         if (whatsappIcon != null) return whatsappIcon!!
 

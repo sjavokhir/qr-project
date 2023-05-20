@@ -9,7 +9,7 @@ import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.EntryT
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.base.BaseScreenWrapper
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.onBoarding.OnBoardingScreen
 
-internal object DetectionScreen : Screen {
+object DetectionScreen : Screen {
 
     @Composable
     override fun Content() {

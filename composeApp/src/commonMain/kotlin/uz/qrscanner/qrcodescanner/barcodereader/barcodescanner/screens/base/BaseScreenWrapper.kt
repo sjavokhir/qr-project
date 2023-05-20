@@ -10,7 +10,7 @@ import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.replaceTo
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.shared.toast
 
 @Composable
-internal fun <State, ScreenEvent> BaseScreenWrapper(
+fun <State, ScreenEvent> BaseScreenWrapper(
     screenModel: BaseScreenModel<State, ScreenEvent>,
     content: @Composable () -> Unit
 ) {

@@ -5,15 +5,13 @@ import org.koin.core.component.inject
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.datastore.AppStore
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.base.BaseScreenModel
 
-class SettingsScreenModel : BaseScreenModel<SettingsState, SettingsEvent>() {
+class SettingsScreenModel : BaseScreenModel<SettingsState, SettingsEvent>(SettingsState()) {
 
     private val appStore by inject<AppStore>()
 
     init {
         onEvent(SettingsEvent.GetStoreData)
     }
-
-    override fun defaultState(): SettingsState = SettingsState()
 
     override fun onEvent(event: SettingsEvent) {
         when (event) {

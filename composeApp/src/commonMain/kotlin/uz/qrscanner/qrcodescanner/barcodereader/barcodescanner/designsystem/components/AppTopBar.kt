@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.resources.AppIcons
 
 @Composable
-internal fun AppTopBar(
+fun AppTopBar(
     title: String,
     onNavigationClick: (() -> Unit)? = null,
     trailingIcon: ImageVector? = null,

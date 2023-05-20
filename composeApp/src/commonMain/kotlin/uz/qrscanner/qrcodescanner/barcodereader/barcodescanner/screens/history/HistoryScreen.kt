@@ -7,7 +7,7 @@ import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.base.BaseScreenWrapper
 
-internal object HistoryScreen : Screen {
+object HistoryScreen : Screen {
 
     @Composable
     override fun Content() {

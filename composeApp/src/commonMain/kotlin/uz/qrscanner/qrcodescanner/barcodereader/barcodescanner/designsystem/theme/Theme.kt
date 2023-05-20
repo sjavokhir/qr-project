@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
 
 @Composable
-internal fun QrTheme(content: @Composable () -> Unit) {
+fun QrTheme(content: @Composable () -> Unit) {
     val colors = lightColors(
         primary = Primary,
         primaryVariant = PrimaryVariant,

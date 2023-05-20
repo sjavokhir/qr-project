@@ -23,7 +23,7 @@ import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.view.QrCameraView
 import kotlin.math.absoluteValue
 
 @Composable
-internal fun DetectionContent(
+fun DetectionContent(
     state: DetectionState,
     sendEvent: (UiEvent) -> Unit
 ) {

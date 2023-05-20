@@ -26,7 +26,7 @@ import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateC
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.settings.SettingsScreen
 
 @Composable
-internal fun CategoriesContent(
+fun CategoriesContent(
     state: CategoriesState,
     sendEvent: (UiEvent) -> Unit
 ) {

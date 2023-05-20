@@ -11,7 +11,7 @@ import androidx.compose.ui.graphics.vector.group
 import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
 
-internal val TwitterIcon: ImageVector
+val TwitterIcon: ImageVector
     get() {
         if (twitterIcon != null) return twitterIcon!!
 

@@ -1,11 +1,10 @@
 package uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.text
 
 import kotlinx.coroutines.flow.update
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.QrGenerateContent
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.base.BaseScreenModel
 
-class TextScreenModel : BaseScreenModel<TextState, TextEvent>() {
-
-    override fun defaultState(): TextState = TextState()
+class TextScreenModel : BaseScreenModel<TextState, TextEvent>(TextState()) {
 
     override fun onEvent(event: TextEvent) {
         when (event) {
@@ -22,7 +21,10 @@ class TextScreenModel : BaseScreenModel<TextState, TextEvent>() {
         }
     }
 
-    fun getGenerateQrCode(): String {
-        return state.value.text
+    fun getContent(): QrGenerateContent {
+        return QrGenerateContent(
+            qrContent = state.value.text,
+            formattedContent = state.value.text
+        )
     }
 }

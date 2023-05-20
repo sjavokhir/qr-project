@@ -8,7 +8,7 @@ import androidx.compose.ui.Modifier
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.shared.notchPadding
 
 @Composable
-internal fun AppBackground(
+fun AppBackground(
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit
 ) {

@@ -2,11 +2,10 @@ package uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generate
 
 import kotlinx.coroutines.flow.update
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.core.extensions.isEmailValid
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.QrGenerateContent
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.base.BaseScreenModel
 
-class EmailScreenModel : BaseScreenModel<EmailState, EmailEvent>() {
-
-    override fun defaultState(): EmailState = EmailState()
+class EmailScreenModel : BaseScreenModel<EmailState, EmailEvent>(EmailState()) {
 
     override fun onEvent(event: EmailEvent) {
         when (event) {
@@ -23,7 +22,10 @@ class EmailScreenModel : BaseScreenModel<EmailState, EmailEvent>() {
         }
     }
 
-    fun getGenerateQrCode(): String {
-        return state.value.email
+    fun getContent(): QrGenerateContent {
+        return QrGenerateContent(
+            qrContent = "mailto:" + state.value.email,
+            formattedContent = state.value.email
+        )
     }
 }

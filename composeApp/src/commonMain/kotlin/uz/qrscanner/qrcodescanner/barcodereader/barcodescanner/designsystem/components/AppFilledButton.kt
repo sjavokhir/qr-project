@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.dp
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.resources.AppStrings
 
 @Composable
-internal fun AppFilledButton(
+fun AppFilledButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     isEnabled: Boolean = true,
@@ -49,7 +49,7 @@ object AppButtonDefaults {
     private const val DisabledButtonContentAlpha = 0.38f
 
     @Composable
-    internal fun filledButtonColors(
+    fun filledButtonColors(
         containerColor: Color = MaterialTheme.colors.onBackground,
         contentColor: Color = MaterialTheme.colors.onPrimary
     ) = ButtonDefaults.buttonColors(

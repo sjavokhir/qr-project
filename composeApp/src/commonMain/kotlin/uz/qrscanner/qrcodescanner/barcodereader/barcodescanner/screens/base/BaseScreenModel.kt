@@ -9,15 +9,14 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 
-abstract class BaseScreenModel<State, ScreenEvent> : ScreenModel, KoinComponent {
+abstract class BaseScreenModel<State, ScreenEvent>(defaultState: State) : ScreenModel,
+    KoinComponent {
 
-    protected val stateData = MutableStateFlow(this.defaultState())
+    protected val stateData = MutableStateFlow(defaultState)
     val state = stateData.asStateFlow()
 
     private val eventChannelData = Channel<UiEvent>()
     val eventChannel = eventChannelData.receiveAsFlow()
-
-    protected abstract fun defaultState(): State
 
     abstract fun onEvent(event: ScreenEvent)
 

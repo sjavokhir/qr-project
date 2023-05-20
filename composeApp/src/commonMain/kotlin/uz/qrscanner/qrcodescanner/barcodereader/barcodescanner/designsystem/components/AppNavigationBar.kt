@@ -23,7 +23,7 @@ import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.reso
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.base.UiEvent
 
 @Composable
-internal fun AppNavigationBar(
+fun AppNavigationBar(
     modifier: Modifier = Modifier,
     currentNavigationType: NavigationType,
     sendEvent: (UiEvent) -> Unit

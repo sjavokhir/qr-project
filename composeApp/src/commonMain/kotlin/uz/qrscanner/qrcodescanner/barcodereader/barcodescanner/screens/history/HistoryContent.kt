@@ -14,7 +14,7 @@ import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.base.UiEv
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.settings.SettingsScreen
 
 @Composable
-internal fun HistoryContent(
+fun HistoryContent(
     state: HistoryState,
     sendEvent: (UiEvent) -> Unit
 ) {

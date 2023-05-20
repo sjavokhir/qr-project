@@ -11,7 +11,7 @@ import androidx.compose.ui.graphics.vector.group
 import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
 
-internal val FacebookIcon: ImageVector
+val FacebookIcon: ImageVector
     get() {
         if (facebookIcon != null) return facebookIcon!!
 

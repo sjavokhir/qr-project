@@ -3,7 +3,7 @@ package uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.shared
 import platform.UIKit.UIImage
 
 class IosImage(
-    val rawValue: UIImage
+    val uiImage: UIImage
 )
 
 actual typealias PlatformImage = IosImage

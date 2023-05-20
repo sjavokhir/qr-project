@@ -11,7 +11,7 @@ import androidx.compose.ui.graphics.vector.group
 import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
 
-internal val TelegramIcon: ImageVector
+val TelegramIcon: ImageVector
     get() {
         if (telegramIcon != null) return telegramIcon!!
 

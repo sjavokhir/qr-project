@@ -12,7 +12,7 @@ import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.comp
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.resources.AppStrings
 
 @Composable
-internal fun WifiContent(
+fun WifiContent(
     state: WifiState,
     onEvent: (WifiEvent) -> Unit,
     onGenerate: () -> Unit

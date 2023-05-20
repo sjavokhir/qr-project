@@ -14,7 +14,7 @@ import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.theme.Background
 
-internal val appLogo2: ImageVector
+val appLogo2: ImageVector
     get() {
         if (_appLogo2 != null) return _appLogo2!!
 

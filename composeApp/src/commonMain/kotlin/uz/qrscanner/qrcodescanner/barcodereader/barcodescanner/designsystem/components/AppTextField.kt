@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.theme.Outline
 
 @Composable
-internal fun AppTextField(
+fun AppTextField(
     value: String,
     onValueChange: (String) -> Unit,
     hint: String,

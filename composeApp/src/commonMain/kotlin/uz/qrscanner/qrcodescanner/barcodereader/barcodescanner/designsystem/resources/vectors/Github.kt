@@ -12,7 +12,7 @@ import androidx.compose.ui.graphics.vector.group
 import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
 
-internal val GithubIcon: ImageVector
+val GithubIcon: ImageVector
     get() {
         if (githubIcon != null) return githubIcon!!
 

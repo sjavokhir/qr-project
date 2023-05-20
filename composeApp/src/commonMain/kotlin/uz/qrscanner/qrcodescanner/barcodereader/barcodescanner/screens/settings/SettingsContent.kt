@@ -1,7 +1,15 @@
 package uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.settings
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Switch
@@ -25,7 +33,7 @@ import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.shared.openUrl
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.shared.shareText
 
 @Composable
-internal fun SettingsContent(
+fun SettingsContent(
     state: SettingsState,
     onEvent: (SettingsEvent) -> Unit,
     sendEvent: (UiEvent) -> Unit
@@ -36,7 +44,7 @@ internal fun SettingsContent(
                 start = 20.dp,
                 end = 20.dp,
                 top = 100.dp,
-                bottom = 20.dp
+                bottom = 120.dp
             ),
             verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {

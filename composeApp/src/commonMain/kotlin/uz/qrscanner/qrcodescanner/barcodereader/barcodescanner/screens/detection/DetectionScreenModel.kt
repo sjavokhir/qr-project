@@ -6,15 +6,13 @@ import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.datastore.Ap
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.EntryType
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.base.BaseScreenModel
 
-class DetectionScreenModel : BaseScreenModel<DetectionState, DetectionEvent>() {
+class DetectionScreenModel : BaseScreenModel<DetectionState, DetectionEvent>(DetectionState()) {
 
     private val appStore by inject<AppStore>()
 
     init {
         onEvent(DetectionEvent.GetEntryType)
     }
-
-    override fun defaultState(): DetectionState = DetectionState()
 
     override fun onEvent(event: DetectionEvent) {
         when (event) {

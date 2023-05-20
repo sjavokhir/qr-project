@@ -6,7 +6,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
-internal val typography = Typography(
+val typography = Typography(
     defaultFontFamily = FontFamily.Monospace,
     h4 = TextStyle(
         fontWeight = FontWeight.Bold,

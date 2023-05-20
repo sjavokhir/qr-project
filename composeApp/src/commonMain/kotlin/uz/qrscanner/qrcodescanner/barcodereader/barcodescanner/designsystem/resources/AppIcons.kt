@@ -4,7 +4,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.*
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.resources.vectors.*
 
-internal object AppIcons {
+object AppIcons {
     val AppLogo = appLogo1
     val AppLogo2 = appLogo2
     val AppLogo3 = appLogo3

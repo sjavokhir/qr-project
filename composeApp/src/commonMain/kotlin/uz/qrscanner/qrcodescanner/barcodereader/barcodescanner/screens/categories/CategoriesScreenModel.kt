@@ -7,13 +7,11 @@ import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.Genera
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.base.BaseScreenModel
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.shared.ioDispatcher
 
-class CategoriesScreenModel : BaseScreenModel<CategoriesState, CategoriesEvent>() {
+class CategoriesScreenModel : BaseScreenModel<CategoriesState, CategoriesEvent>(CategoriesState()) {
 
     init {
         onEvent(CategoriesEvent.GetCategories)
     }
-
-    override fun defaultState(): CategoriesState = CategoriesState()
 
     override fun onEvent(event: CategoriesEvent) {
         when (event) {

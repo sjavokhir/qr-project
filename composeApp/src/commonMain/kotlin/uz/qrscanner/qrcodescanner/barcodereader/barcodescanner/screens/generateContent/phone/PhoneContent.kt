@@ -10,7 +10,7 @@ import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.comp
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.resources.AppStrings
 
 @Composable
-internal fun PhoneContent(
+fun PhoneContent(
     state: PhoneState,
     onEvent: (PhoneEvent) -> Unit,
     onGenerate: () -> Unit

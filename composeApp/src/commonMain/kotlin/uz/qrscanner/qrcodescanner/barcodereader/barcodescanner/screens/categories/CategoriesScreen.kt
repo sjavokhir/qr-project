@@ -13,7 +13,7 @@ import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateC
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.replaceTo
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.settings.SettingsScreen
 
-internal object CategoriesScreen : Screen {
+object CategoriesScreen : Screen {
 
     @Composable
     override fun Content() {
