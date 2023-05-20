@@ -19,10 +19,13 @@ class WifiScreenModel : BaseScreenModel<WifiState, WifiEvent>(WifiState()) {
         password: String? = null
     ) {
         stateData.update {
+            val newNetworkName = networkName ?: it.networkName
+            val newPassword = password ?: it.password
+
             it.copy(
-                networkName = networkName ?: it.networkName,
-                password = password ?: it.password,
-                isEnabled = !networkName.isNullOrEmpty() && !password.isNullOrEmpty()
+                networkName = newNetworkName,
+                password = newPassword,
+                isEnabled = newNetworkName.isNotEmpty() && newPassword.isNotEmpty()
             )
         }
     }
