@@ -97,6 +97,10 @@ data class GenerateCodeScreen(
                     Spacer(modifier = Modifier.height(56.dp))
                 }
 
+                GenerateType.DriverLicense -> {
+                    Spacer(modifier = Modifier.height(56.dp))
+                }
+
                 GenerateType.Location -> {
                     Spacer(modifier = Modifier.height(56.dp))
                 }

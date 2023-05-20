@@ -1,6 +1,7 @@
 package uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.sms
 
 import kotlinx.coroutines.flow.update
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.core.extensions.replaceSpace
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.QrGenerateContent
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.resources.AppStrings
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.base.BaseScreenModel
@@ -26,17 +27,19 @@ class SmsScreenModel : BaseScreenModel<SmsState, SmsEvent>(SmsState()) {
             it.copy(
                 message = newMessage,
                 phoneNumber = newPhoneNumber,
-                isEnabled = newMessage.isNotEmpty() && newPhoneNumber.isNotEmpty()
+                isEnabled = newMessage.isNotEmpty() && newPhoneNumber
+                    .replaceSpace()
+                    .isNotEmpty()
             )
         }
     }
 
     fun getContent(): QrGenerateContent {
         return QrGenerateContent(
-            qrContent = "sms:" + state.value.phoneNumber + "?body=" + state.value.message,
+            qrContent = "sms:" + state.value.phoneNumber.replaceSpace() + "?body=" + state.value.message,
             formattedContent = """
                 ${AppStrings.message}: ${state.value.message}
-                ${AppStrings.phoneNumber}: ${state.value.phoneNumber}
+                ${AppStrings.phoneNumber}: ${state.value.phoneNumber.replaceSpace()}
             """.trimIndent()
         )
     }

@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.GenerateType
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.NavigationType
@@ -92,7 +93,8 @@ private fun GenerateItem(
                 style = MaterialTheme.typography.body2,
                 fontWeight = FontWeight.SemiBold,
                 color = MaterialTheme.colors.primary,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
+                maxLines = 1
             )
         }
     }

@@ -28,6 +28,7 @@ class CategoriesScreenModel : BaseScreenModel<CategoriesState, CategoriesEvent>(
                 add(GenerateType.Event)
                 add(GenerateType.Contact)
                 add(GenerateType.Business)
+                add(GenerateType.DriverLicense)
                 add(GenerateType.Location)
                 add(GenerateType.Phone)
                 add(GenerateType.Sms)

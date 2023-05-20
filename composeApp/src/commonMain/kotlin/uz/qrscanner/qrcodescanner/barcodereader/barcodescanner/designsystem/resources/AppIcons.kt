@@ -31,6 +31,7 @@ object AppIcons {
     val FlipCameraIos = Icons.Rounded.FlipCameraIos
     val Copy = Icons.Rounded.ContentCopy
     val Save = Icons.Rounded.Save
+    val Car = Icons.Rounded.DirectionsCar
     val WhatsApp = WhatsAppIcon
     val Facebook = FacebookIcon
     val Github = GithubIcon

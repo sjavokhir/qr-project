@@ -59,6 +59,7 @@ object AppStrings {
     const val ok = "OK"
     const val message = "Message"
     const val copied = "Copied"
+    const val driverLicense = "Driver license"
 
     fun enterUsername(type: GenerateType): String {
         return "Enter ${type.title} username"

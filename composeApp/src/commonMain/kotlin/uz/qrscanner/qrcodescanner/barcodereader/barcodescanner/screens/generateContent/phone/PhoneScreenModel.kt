@@ -1,6 +1,7 @@
 package uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.phone
 
 import kotlinx.coroutines.flow.update
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.core.extensions.replaceSpace
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.QrGenerateContent
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.resources.AppStrings
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.base.BaseScreenModel
@@ -19,15 +20,17 @@ class PhoneScreenModel(
         stateData.update {
             it.copy(
                 phone = phone,
-                isEnabled = phone.isNotEmpty()
+                isEnabled = phone
+                    .replaceSpace()
+                    .isNotEmpty()
             )
         }
     }
 
     fun getContent(): QrGenerateContent {
         return QrGenerateContent(
-            qrContent = (if (isWhatsApp) "https://wa.me/" else "tel:") + state.value.phone,
-            formattedContent = "${AppStrings.phoneNumber}: " + state.value.phone
+            qrContent = (if (isWhatsApp) "https://wa.me/" else "tel:") + state.value.phone.replaceSpace(),
+            formattedContent = "${AppStrings.phoneNumber}: " + state.value.phone.replaceSpace()
         )
     }
 }

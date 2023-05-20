@@ -14,6 +14,7 @@ enum class GenerateType(
     Event(AppStrings.event, AppIcons.Event),
     Contact(AppStrings.contact, AppIcons.Contacts),
     Business(AppStrings.business, AppIcons.Domain),
+    DriverLicense(AppStrings.driverLicense, AppIcons.Car),
     Location(AppStrings.location, AppIcons.ShareLocation),
     Phone(AppStrings.phone, AppIcons.PhoneCallback),
     Sms(AppStrings.sms, AppIcons.Chat),
