@@ -9,8 +9,8 @@ captures
 .externalNativeBuild
 .cxx
 local.properties
+default.local.properties
 xcuserdata/
 Pods/
 *.jks
 *yarn.lock
-default.local.properties

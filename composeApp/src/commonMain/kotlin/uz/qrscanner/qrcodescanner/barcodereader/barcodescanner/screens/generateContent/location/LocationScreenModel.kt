@@ -10,8 +10,18 @@ class LocationScreenModel : BaseScreenModel<LocationState, LocationEvent>(Locati
 
     override fun onEvent(event: LocationEvent) {
         when (event) {
-            is LocationEvent.LatitudeChanged -> onValueChanged(latitude = event.value.toDoubleOrNull())
-            is LocationEvent.LongitudeChanged -> onValueChanged(longitude = event.value.toDoubleOrNull())
+            is LocationEvent.LatitudeChanged -> onValueChanged(
+                latitude = event.value.toDoubleOrNull()
+            )
+
+            is LocationEvent.LongitudeChanged -> onValueChanged(
+                longitude = event.value.toDoubleOrNull()
+            )
+
+            is LocationEvent.GeoPositionChanged -> onValueChanged(
+                latitude = event.value.latitude,
+                longitude = event.value.longitude
+            )
         }
     }
 
@@ -26,7 +36,7 @@ class LocationScreenModel : BaseScreenModel<LocationState, LocationEvent>(Locati
             it.copy(
                 latitude = mLatitude,
                 longitude = mLongitude,
-                isEnabled = mLatitude > 0.0 && mLongitude > 0.0
+                isEnabled = (mLatitude ?: 0.0) > 0.0 && (mLongitude ?: 0.0) > 0.0
             )
         }
     }

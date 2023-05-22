@@ -5,7 +5,8 @@ import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.Genera
 object AppStrings {
     const val appName = "QR"
     const val loading = "Loading..."
-    const val onBoardingDescription = "Go and enjoy our features for free and make your life easy with us."
+    const val onBoardingDescription =
+        "Go and enjoy our features for free and make your life easy with us."
     const val letsStart = "Let's Start"
     const val generateQrCode = "Generate QR Code"
     const val generate = "Generate"
@@ -83,6 +84,8 @@ object AppStrings {
     const val issuingCountry = "Issuing country"
     const val latitude = "Latitude"
     const val longitude = "Longitude"
+    const val selectLocation = "Select location"
+    const val actionSelect = "Select"
 
     fun enterUsername(type: GenerateType): String {
         return "Enter ${type.title} username"

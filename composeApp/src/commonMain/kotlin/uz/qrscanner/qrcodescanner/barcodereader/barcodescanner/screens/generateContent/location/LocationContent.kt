@@ -16,6 +16,7 @@ import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.reso
 fun LocationContent(
     state: LocationState,
     onEvent: (LocationEvent) -> Unit,
+    onSelectLocation: () -> Unit,
     onGenerate: () -> Unit
 ) {
     Column(
@@ -23,7 +24,7 @@ fun LocationContent(
         verticalArrangement = Arrangement.spacedBy(20.dp)
     ) {
         AppTextField(
-            value = state.latitude.toString(),
+            value = state.latitude?.toString().orEmpty(),
             onValueChange = {
                 onEvent(LocationEvent.LatitudeChanged(it))
             },
@@ -33,7 +34,7 @@ fun LocationContent(
         )
 
         AppTextField(
-            value = state.longitude.toString(),
+            value = state.longitude?.toString().orEmpty(),
             onValueChange = {
                 onEvent(LocationEvent.LongitudeChanged(it))
             },
@@ -44,6 +45,11 @@ fun LocationContent(
 
         AppFilledButton(
             modifier = Modifier.padding(top = 4.dp),
+            text = AppStrings.selectLocation,
+            onClick = onSelectLocation
+        )
+
+        AppFilledButton(
             text = AppStrings.generateQrCode,
             isEnabled = state.isEnabled,
             onClick = onGenerate

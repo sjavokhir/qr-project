@@ -23,6 +23,7 @@ import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateC
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.email.EmailContent
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.email.EmailScreenModel
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.location.LocationContent
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.location.LocationEvent
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.location.LocationScreenModel
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.phone.PhoneContent
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.phone.PhoneScreenModel
@@ -36,6 +37,7 @@ import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateC
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.website.WebsiteScreenModel
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.wifi.WifiContent
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.wifi.WifiScreenModel
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.selectLocation.SelectLocationScreen
 
 data class GenerateCodeScreen(
     val type: GenerateType
@@ -143,6 +145,11 @@ data class GenerateCodeScreen(
                     LocationContent(
                         state = state,
                         onEvent = screenModel::onEvent,
+                        onSelectLocation = {
+                            navigator.push(SelectLocationScreen {
+                                screenModel.onEvent(LocationEvent.GeoPositionChanged(it))
+                            })
+                        },
                         onGenerate = {
                             navigateToGenerate(screenModel.getContent())
                         }

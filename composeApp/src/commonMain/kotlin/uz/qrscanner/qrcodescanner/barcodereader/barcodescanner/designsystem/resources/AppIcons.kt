@@ -32,6 +32,7 @@ object AppIcons {
     val Copy = Icons.Rounded.ContentCopy
     val Save = Icons.Rounded.Save
     val Car = Icons.Rounded.DirectionsCar
+    val Pin = Icons.Rounded.PinDrop
     val WhatsApp = WhatsAppIcon
     val Facebook = FacebookIcon
     val Github = GithubIcon
