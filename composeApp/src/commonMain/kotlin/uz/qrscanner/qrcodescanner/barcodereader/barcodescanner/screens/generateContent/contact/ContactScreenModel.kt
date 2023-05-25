@@ -62,23 +62,23 @@ class ContactScreenModel : BaseScreenModel<ContactState, ContactEvent>(ContactSt
 
             // Name
             append("N:")
-                .append(state.value.lastName).append(";")
-                .append(state.value.firstName).append(";;;\n")
+                .append(currentState.lastName).append(";")
+                .append(currentState.firstName).append(";;;\n")
             append("FN:")
-                .append(state.value.firstName).append(" ")
-                .append(state.value.lastName).append("\n")
+                .append(currentState.firstName).append(" ")
+                .append(currentState.lastName).append("\n")
 
             // Phone
-            append("TEL;TYPE=WORK,VOICE:").append(state.value.phone).append("\n")
+            append("TEL;TYPE=WORK,VOICE:").append(currentState.phone).append("\n")
 
             // Email
-            append("EMAIL;TYPE=PREF,INTERNET:").append(state.value.email).append("\n")
+            append("EMAIL;TYPE=PREF,INTERNET:").append(currentState.email).append("\n")
 
             // Website
-            append("URL:").append(state.value.website).append("\n")
+            append("URL:").append(currentState.website).append("\n")
 
             // Address
-            append("ADR;TYPE=WORK:").append(state.value.address).append(";")
+            append("ADR;TYPE=WORK:").append(currentState.address).append(";")
 
             append("END:VCARD")
         }
@@ -86,12 +86,12 @@ class ContactScreenModel : BaseScreenModel<ContactState, ContactEvent>(ContactSt
 
     private fun buildFormattedContent(): String {
         return buildString {
-            append("First Name: ${state.value.firstName}\n")
-            append("Last Name: ${state.value.lastName}\n")
-            append("Phone: ${state.value.phone}\n")
-            append("Email: ${state.value.email}\n")
-            append("Website: ${state.value.website}\n")
-            append("Address: ${state.value.address}\n")
+            append("First Name: ${currentState.firstName}\n")
+            append("Last Name: ${currentState.lastName}\n")
+            append("Phone: ${currentState.phone}\n")
+            append("Email: ${currentState.email}\n")
+            append("Website: ${currentState.website}\n")
+            append("Address: ${currentState.address}\n")
         }
     }
 }

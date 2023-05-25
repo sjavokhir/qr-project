@@ -43,10 +43,10 @@ class LocationScreenModel : BaseScreenModel<LocationState, LocationEvent>(Locati
 
     fun getContent(): QrGenerateContent {
         return QrGenerateContent(
-            qrContent = "geo:${state.value.latitude},${state.value.longitude}",
+            qrContent = "geo:${currentState.latitude},${currentState.longitude}",
             formattedContent = """
-                ${AppStrings.latitude}: ${state.value.latitude}
-                ${AppStrings.longitude}: ${state.value.longitude}
+                ${AppStrings.latitude}: ${currentState.latitude}
+                ${AppStrings.longitude}: ${currentState.longitude}
             """.trimIndent()
         )
     }

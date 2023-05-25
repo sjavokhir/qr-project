@@ -22,6 +22,8 @@ import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateC
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.driverLicense.DriverLicenseScreenModel
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.email.EmailContent
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.email.EmailScreenModel
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.event.EventContent
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.event.EventScreenModel
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.location.LocationContent
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.location.LocationEvent
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.location.LocationScreenModel
@@ -96,7 +98,16 @@ data class GenerateCodeScreen(
                 }
 
                 GenerateType.Event -> {
-                    Spacer(modifier = Modifier.height(56.dp))
+                    val screenModel = rememberScreenModel { EventScreenModel() }
+                    val state by screenModel.state.collectAsState()
+
+                    EventContent(
+                        state = state,
+                        onEvent = screenModel::onEvent,
+                        onGenerate = {
+                            navigateToGenerate(screenModel.getContent())
+                        }
+                    )
                 }
 
                 GenerateType.Contact -> {

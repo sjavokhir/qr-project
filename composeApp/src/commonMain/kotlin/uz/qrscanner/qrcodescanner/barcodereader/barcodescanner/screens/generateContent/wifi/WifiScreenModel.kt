@@ -34,10 +34,10 @@ class WifiScreenModel : BaseScreenModel<WifiState, WifiEvent>(WifiState()) {
 
     fun getContent(): QrGenerateContent {
         return QrGenerateContent(
-            qrContent = "WIFI:S:${state.value.networkName}" + ";P:" + state.value.password + ";;",
+            qrContent = "WIFI:S:${currentState.networkName}" + ";P:" + currentState.password + ";;",
             formattedContent = """
-                ${AppStrings.network}: ${state.value.networkName}
-                ${AppStrings.password}: ${state.value.password}
+                ${AppStrings.network}: ${currentState.networkName}
+                ${AppStrings.password}: ${currentState.password}
             """.trimIndent()
         )
     }

@@ -25,8 +25,8 @@ class WebsiteScreenModel : BaseScreenModel<WebsiteState, WebsiteEvent>(WebsiteSt
 
     fun getContent(): QrGenerateContent {
         return QrGenerateContent(
-            qrContent = state.value.website,
-            formattedContent = "${AppStrings.website}: ${state.value.website}"
+            qrContent = currentState.website,
+            formattedContent = "${AppStrings.website}: ${currentState.website}"
         )
     }
 }

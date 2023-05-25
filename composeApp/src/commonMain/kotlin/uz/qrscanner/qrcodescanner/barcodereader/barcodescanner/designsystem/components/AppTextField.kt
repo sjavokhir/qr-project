@@ -29,6 +29,7 @@ fun AppTextField(
     hint: String,
     placeholder: String,
     keyboardType: KeyboardType = KeyboardType.Text,
+    enabled: Boolean = true,
     singleLine: Boolean = true,
     modifier: Modifier = Modifier
 ) {
@@ -39,6 +40,7 @@ fun AppTextField(
         textStyle = MaterialTheme.typography.body1.copy(
             color = MaterialTheme.colors.onBackground
         ),
+        enabled = enabled,
         singleLine = singleLine,
         keyboardOptions = KeyboardOptions(
             keyboardType = keyboardType,

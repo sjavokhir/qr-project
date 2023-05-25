@@ -29,8 +29,8 @@ class PhoneScreenModel(
 
     fun getContent(): QrGenerateContent {
         return QrGenerateContent(
-            qrContent = (if (isWhatsApp) "https://wa.me/" else "tel:") + state.value.phone,
-            formattedContent = "${AppStrings.phoneNumber}: " + state.value.phone
+            qrContent = (if (isWhatsApp) "https://wa.me/" else "tel:") + currentState.phone,
+            formattedContent = "${AppStrings.phoneNumber}: " + currentState.phone
         )
     }
 }

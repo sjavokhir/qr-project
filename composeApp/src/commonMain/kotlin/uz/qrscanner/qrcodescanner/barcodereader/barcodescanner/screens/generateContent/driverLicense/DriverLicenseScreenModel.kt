@@ -91,19 +91,19 @@ class DriverLicenseScreenModel :
 
     private fun buildQrContent(): String {
         return buildString {
-            append("Document Type: ${state.value.documentType}\n")
-            append("First Name: ${state.value.firstName}\n")
-            append("Middle Name: ${state.value.middleName}\n")
-            append("Last Name: ${state.value.lastName}\n")
-            append("Gender: ${state.value.gender}\n")
-            append("Address Street: ${state.value.addressStreet}\n")
-            append("Address City: ${state.value.addressCity}\n")
-            append("Address Zip: ${state.value.addressZip}\n")
-            append("License Number: ${state.value.licenseNumber}\n")
-            append("Issue Date: ${state.value.issueDate}\n")
-            append("Expiry Date: ${state.value.expiryDate}\n")
-            append("Birth Date: ${state.value.birthDate}\n")
-            append("Issuing Country: ${state.value.issuingCountry}")
+            append("Document Type: ${currentState.documentType}\n")
+            append("First Name: ${currentState.firstName}\n")
+            append("Middle Name: ${currentState.middleName}\n")
+            append("Last Name: ${currentState.lastName}\n")
+            append("Gender: ${currentState.gender}\n")
+            append("Address Street: ${currentState.addressStreet}\n")
+            append("Address City: ${currentState.addressCity}\n")
+            append("Address Zip: ${currentState.addressZip}\n")
+            append("License Number: ${currentState.licenseNumber}\n")
+            append("Issue Date: ${currentState.issueDate}\n")
+            append("Expiry Date: ${currentState.expiryDate}\n")
+            append("Birth Date: ${currentState.birthDate}\n")
+            append("Issuing Country: ${currentState.issuingCountry}")
         }
     }
 }

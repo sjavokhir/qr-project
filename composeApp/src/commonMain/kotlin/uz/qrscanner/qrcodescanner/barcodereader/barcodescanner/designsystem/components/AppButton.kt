@@ -3,7 +3,12 @@ package uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.com
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
-import androidx.compose.material.*
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.ProvideTextStyle
+import androidx.compose.material.Text
+import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -26,6 +31,36 @@ fun AppFilledButton(
         onClick = onClick,
         modifier = modifier
             .fillMaxWidth()
+            .heightIn(min = AppButtonDefaults.NormalButtonHeight),
+        enabled = isEnabled && !isLoading,
+        colors = AppButtonDefaults.filledButtonColors(
+            containerColor = containerColor,
+            contentColor = contentColor
+        ),
+        shape = MaterialTheme.shapes.medium,
+        contentPadding = PaddingValues(horizontal = 20.dp),
+        content = {
+            ProvideTextStyle(value = textStyle) {
+                Text(text = if (isLoading) AppStrings.loading else text)
+            }
+        }
+    )
+}
+
+@Composable
+fun AppTextButton(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    isEnabled: Boolean = true,
+    isLoading: Boolean = false,
+    containerColor: Color = Color.Transparent,
+    contentColor: Color = MaterialTheme.colors.onBackground,
+    text: String,
+    textStyle: TextStyle = MaterialTheme.typography.button,
+) {
+    TextButton(
+        onClick = onClick,
+        modifier = modifier
             .heightIn(min = AppButtonDefaults.NormalButtonHeight),
         enabled = isEnabled && !isLoading,
         colors = AppButtonDefaults.filledButtonColors(

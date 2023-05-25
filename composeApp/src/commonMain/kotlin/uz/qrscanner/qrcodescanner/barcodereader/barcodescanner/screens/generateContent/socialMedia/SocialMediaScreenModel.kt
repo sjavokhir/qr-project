@@ -50,6 +50,6 @@ class SocialMediaScreenModel(private val type: GenerateType) :
             else -> ""
         }
 
-        return link + state.value.username
+        return link + currentState.username
     }
 }

@@ -61,20 +61,20 @@ class BusinessScreenModel : BaseScreenModel<BusinessState, BusinessEvent>(Busine
             append("VERSION:3.0\n")
 
             // Organization
-            append("ORG:").append(state.value.name).append("\n")
-            append("INDUSTRY:").append(state.value.industry).append("\n")
+            append("ORG:").append(currentState.name).append("\n")
+            append("INDUSTRY:").append(currentState.industry).append("\n")
 
             // Phone
-            append("TEL;TYPE=WORK,VOICE:").append(state.value.phone).append("\n")
+            append("TEL;TYPE=WORK,VOICE:").append(currentState.phone).append("\n")
 
             // Email
-            append("EMAIL;TYPE=PREF,INTERNET:").append(state.value.email).append("\n")
+            append("EMAIL;TYPE=PREF,INTERNET:").append(currentState.email).append("\n")
 
             // Website
-            append("URL:").append(state.value.website).append("\n")
+            append("URL:").append(currentState.website).append("\n")
 
             // Address
-            append("ADR;TYPE=WORK:").append(state.value.address).append("\n")
+            append("ADR;TYPE=WORK:").append(currentState.address).append("\n")
 
             append("END:VCARD")
         }
@@ -82,12 +82,12 @@ class BusinessScreenModel : BaseScreenModel<BusinessState, BusinessEvent>(Busine
 
     private fun buildFormattedContent(): String {
         return buildString {
-            append("Company Name: ${state.value.name}\n")
-            append("Industry: ${state.value.industry}\n")
-            append("Phone: ${state.value.phone}\n")
-            append("Email: ${state.value.email}\n")
-            append("Website: ${state.value.website}\n")
-            append("Address: ${state.value.address}\n")
+            append("Company Name: ${currentState.name}\n")
+            append("Industry: ${currentState.industry}\n")
+            append("Phone: ${currentState.phone}\n")
+            append("Email: ${currentState.email}\n")
+            append("Website: ${currentState.website}\n")
+            append("Address: ${currentState.address}\n")
         }
     }
 }

@@ -34,10 +34,10 @@ class SmsScreenModel : BaseScreenModel<SmsState, SmsEvent>(SmsState()) {
 
     fun getContent(): QrGenerateContent {
         return QrGenerateContent(
-            qrContent = "sms:" + state.value.phoneNumber + "?body=" + state.value.message,
+            qrContent = "sms:" + currentState.phoneNumber + "?body=" + currentState.message,
             formattedContent = """
-                ${AppStrings.message}: ${state.value.message}
-                ${AppStrings.phoneNumber}: ${state.value.phoneNumber}
+                ${AppStrings.message}: ${currentState.message}
+                ${AppStrings.phoneNumber}: ${currentState.phoneNumber}
             """.trimIndent()
         )
     }
