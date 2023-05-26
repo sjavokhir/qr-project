@@ -87,7 +87,7 @@ class BusinessScreenModel : BaseScreenModel<BusinessState, BusinessEvent>(Busine
             append("Phone: ${currentState.phone}\n")
             append("Email: ${currentState.email}\n")
             append("Website: ${currentState.website}\n")
-            append("Address: ${currentState.address}\n")
+            append("Address: ${currentState.address}")
         }
     }
 }

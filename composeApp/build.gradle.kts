@@ -104,7 +104,7 @@ android {
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.android"
+        applicationId = "uz.qrscanner.qrcodescanner.barcodereader.barcodescanner"
         minSdk = 24
         targetSdk = 33
         versionCode = 1

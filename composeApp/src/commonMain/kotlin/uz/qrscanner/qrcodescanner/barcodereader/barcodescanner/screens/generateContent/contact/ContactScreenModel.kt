@@ -91,7 +91,7 @@ class ContactScreenModel : BaseScreenModel<ContactState, ContactEvent>(ContactSt
             append("Phone: ${currentState.phone}\n")
             append("Email: ${currentState.email}\n")
             append("Website: ${currentState.website}\n")
-            append("Address: ${currentState.address}\n")
+            append("Address: ${currentState.address}")
         }
     }
 }

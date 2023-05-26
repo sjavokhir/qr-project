@@ -17,11 +17,15 @@ import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.painter.BitmapPainter
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -34,9 +38,11 @@ import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.comp
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.resources.AppIcons
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.resources.AppStrings
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.theme.Outline
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.shared.PlatformImage
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.shared.copyText
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.shared.getImageBitmap
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.shared.shareText
-import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.view.rememberQrBitmapPainter
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.view.rememberQrImage
 
 @Composable
 fun GenerateContent(
@@ -45,11 +51,14 @@ fun GenerateContent(
     datetime: String,
     onNavigateUp: () -> Unit
 ) {
-    val bitmapPainter = rememberQrBitmapPainter(
+    val platformImage = rememberQrImage(
         content = content.qrContent,
-        size = 400.dp,
-        padding = 1.dp
+        size = 512,
+        padding = 2
     )
+    val imageBitmap by remember(platformImage) {
+        mutableStateOf(platformImage?.getImageBitmap())
+    }
 
     AppBackground {
         Box {
@@ -64,8 +73,12 @@ fun GenerateContent(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 item { GenerateInfo(content.formattedContent, type, datetime) }
-                item { GenerateQrImage(bitmapPainter) }
-                item { GenerateActions(content.formattedContent) }
+
+                imageBitmap?.let { bitmap ->
+                    item { GenerateQrImage(bitmap) }
+                }
+
+                item { GenerateActions(content.formattedContent, platformImage) }
             }
 
             AppTopBar(
@@ -128,10 +141,10 @@ private fun GenerateInfo(
 
 @Composable
 private fun GenerateQrImage(
-    bitmapPainter: BitmapPainter
+    imageBitmap: ImageBitmap
 ) {
     Image(
-        painter = bitmapPainter,
+        bitmap = imageBitmap,
         contentDescription = null,
         modifier = Modifier
             .size(160.dp)
@@ -145,7 +158,10 @@ private fun GenerateQrImage(
 }
 
 @Composable
-private fun GenerateActions(content: String) {
+private fun GenerateActions(
+    content: String,
+    platformImage: PlatformImage?
+) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
@@ -164,11 +180,14 @@ private fun GenerateActions(content: String) {
             icon = AppIcons.Copy,
             onClick = { copyText(content) }
         )
-        GenerateButton(
-            text = AppStrings.save,
-            icon = AppIcons.Save,
-            onClick = {}
-        )
+
+        if (platformImage != null) {
+            GenerateButton(
+                text = AppStrings.save,
+                icon = AppIcons.Save,
+                onClick = {}
+            )
+        }
     }
 }
 

@@ -137,7 +137,7 @@ class EventScreenModel : BaseScreenModel<EventState, EventEvent>(EventState()) {
             append("Start Date and Time: ${currentState.startDateTime}\n")
             append("End Date and Time: ${currentState.endDateTime}\n")
             append("Event Location: ${currentState.location}\n")
-            append("Description: ${currentState.description}\n")
+            append("Description: ${currentState.description}")
         }
     }
 }
