@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7E5C15D02A1FB1F000C56083 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E5C15CF2A1FB1F000C56083 /* AVFoundation.framework */; };
-		7E5C15D22A1FB38600C56083 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E5C15D12A1FB38600C56083 /* Foundation.framework */; };
 		A93A953B29CC810C00F8E227 /* iosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93A953A29CC810C00F8E227 /* iosApp.swift */; };
 		A93A953F29CC810D00F8E227 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A93A953E29CC810D00F8E227 /* Assets.xcassets */; };
 		A93A954229CC810D00F8E227 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A93A954129CC810D00F8E227 /* Preview Assets.xcassets */; };
@@ -33,8 +31,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E5C15D22A1FB38600C56083 /* Foundation.framework in Frameworks */,
-				7E5C15D02A1FB1F000C56083 /* AVFoundation.framework in Frameworks */,
 				D51586C6B134BDB93BE1DFFB /* Pods_iosApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -331,6 +327,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = QR;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSCameraUsageDescription = "For QR detector";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app uses location data to show taken photos on a map";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -375,6 +372,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = QR;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSCameraUsageDescription = "For QR detector";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app uses location data to show taken photos on a map";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

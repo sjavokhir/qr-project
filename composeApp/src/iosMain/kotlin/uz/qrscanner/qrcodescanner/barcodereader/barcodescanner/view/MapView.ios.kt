@@ -6,29 +6,31 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.interop.UIKitView
+import kotlinx.cinterop.useContents
+import platform.CoreLocation.CLLocation
 import platform.CoreLocation.CLLocationCoordinate2DMake
+import platform.CoreLocation.CLLocationManager
+import platform.CoreLocation.kCLLocationAccuracyBest
 import platform.MapKit.MKCoordinateRegionMakeWithDistance
 import platform.MapKit.MKMapView
-import platform.MapKit.MKPointAnnotation
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.GeoPosition
-import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.resources.AppStrings
 
 @Composable
 actual fun MapView(
     modifier: Modifier,
     currentPosition: MutableState<GeoPosition>
 ) {
-    val location = CLLocationCoordinate2DMake(12.0, 12.0)
-    val annotation = remember {
-        MKPointAnnotation(
-            location,
-            title = null,
-            subtitle = null
-        )
+    val locationManager = remember {
+        CLLocationManager().apply {
+            desiredAccuracy = kCLLocationAccuracyBest
+            requestWhenInUseAuthorization()
+        }
     }
-    val mkMapView = remember { MKMapView().apply { addAnnotation(annotation) } }
-
-    annotation.setTitle(AppStrings.selectLocation)
+    val location = remember(locationManager.location) {
+        val geoPosition = locationManager.location?.toGeo() ?: GeoPosition()
+        CLLocationCoordinate2DMake(geoPosition.latitude, geoPosition.longitude)
+    }
+    val mkMapView = remember { MKMapView() }
 
     UIKitView(
         modifier = modifier.fillMaxSize(),
@@ -39,11 +41,17 @@ actual fun MapView(
             mkMapView.setRegion(
                 MKCoordinateRegionMakeWithDistance(
                     centerCoordinate = location,
-                    latitudinalMeters = 10_000.0,
-                    longitudinalMeters = 10_000.0
+                    latitudinalMeters = 1_000.0,
+                    longitudinalMeters = 1_000.0
                 ),
                 animated = false
             )
         }
     )
 }
+
+private fun CLLocation.toGeo() =
+    GeoPosition(
+        latitude = coordinate.useContents { latitude },
+        longitude = coordinate.useContents { longitude }
+    )
