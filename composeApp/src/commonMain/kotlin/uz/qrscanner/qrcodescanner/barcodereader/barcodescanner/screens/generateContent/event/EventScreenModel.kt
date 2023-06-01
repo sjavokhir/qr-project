@@ -16,76 +16,30 @@ class EventScreenModel : BaseScreenModel<EventState, EventEvent>(EventState()) {
             is EventEvent.NameChanged -> onValueChanged(name = event.value)
             is EventEvent.LocationChanged -> onValueChanged(location = event.value)
             is EventEvent.DescriptionChanged -> onValueChanged(description = event.value)
-            is EventEvent.DateChanged -> onDateChanged(event.value)
-            is EventEvent.TimeChanged -> onTimeChanged(event.value)
-            is EventEvent.ShowPicker -> showPicker(event.start)
-            EventEvent.DismissPicker -> dismissPicker()
+            is EventEvent.DateChanged -> onDateChanged(event.value, event.isStart)
+            is EventEvent.TimeChanged -> onTimeChanged(event.value, event.isStart)
         }
     }
 
-    private fun showPicker(start: Boolean) {
+    private fun onDateChanged(date: Long, isStart: Boolean) {
         stateData.update {
-            it.copy(
-                showDatePicker = true,
-                showTimePicker = false,
-                start = start
-            )
-        }
-    }
-
-    private fun dismissPicker() {
-        stateData.update {
-            if (it.start) {
-                it.copy(
-                    showDatePicker = false,
-                    showTimePicker = false,
-                    startDate = 0L,
-                    startTime = HourMinute(),
-                    startDateTime = ""
-                )
+            if (isStart) {
+                it.copy(startDate = date)
             } else {
-                it.copy(
-                    showDatePicker = false,
-                    showTimePicker = false,
-                    endDate = 0L,
-                    endTime = HourMinute(),
-                    endDateTime = ""
-                )
+                it.copy(endDate = date)
             }
         }
     }
 
-    private fun onDateChanged(date: Long) {
+    private fun onTimeChanged(time: HourMinute, isStart: Boolean) {
         stateData.update {
-            if (it.start) {
+            if (isStart) {
                 it.copy(
-                    showDatePicker = false,
-                    showTimePicker = true,
-                    startDate = date
-                )
-            } else {
-                it.copy(
-                    showDatePicker = false,
-                    showTimePicker = true,
-                    endDate = date
-                )
-            }
-        }
-    }
-
-    private fun onTimeChanged(time: HourMinute) {
-        stateData.update {
-            if (it.start) {
-                it.copy(
-                    showDatePicker = false,
-                    showTimePicker = false,
                     startTime = time,
                     startDateTime = "${it.startDate.timestampToDateTime().defaultDate}, ${time.defaultTime}",
                 )
             } else {
                 it.copy(
-                    showDatePicker = false,
-                    showTimePicker = false,
                     endTime = time,
                     endDateTime = "${it.endDate.timestampToDateTime().defaultDate}, ${time.defaultTime}",
                 )
@@ -94,9 +48,7 @@ class EventScreenModel : BaseScreenModel<EventState, EventEvent>(EventState()) {
     }
 
     private fun onValueChanged(
-        name: String? = null,
-        location: String? = null,
-        description: String? = null
+        name: String? = null, location: String? = null, description: String? = null
     ) {
         stateData.update {
             val mName = (name ?: it.name).removeSeparator()
@@ -114,8 +66,7 @@ class EventScreenModel : BaseScreenModel<EventState, EventEvent>(EventState()) {
 
     fun getContent(): QrGenerateContent {
         return QrGenerateContent(
-            qrContent = buildQrContent(),
-            formattedContent = buildFormattedContent()
+            qrContent = buildQrContent(), formattedContent = buildFormattedContent()
         )
     }
 

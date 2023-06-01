@@ -7,12 +7,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import cafe.adriel.voyager.navigator.bottomSheet.LocalBottomSheetNavigator
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.core.extensions.noRippleClickable
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.components.AppFilledButton
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.components.AppTextField
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.designsystem.resources.AppStrings
-import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.view.picker.DatePicker
-import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.view.picker.HourMinutePicker
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.picker.PickerScreen
 
 @Composable
 fun EventContent(
@@ -20,19 +20,7 @@ fun EventContent(
     onEvent: (EventEvent) -> Unit,
     onGenerate: () -> Unit
 ) {
-    if (state.showDatePicker) {
-        DatePicker(
-            onDateSelected = { onEvent(EventEvent.DateChanged(this)) },
-            onDismissRequest = { onEvent(EventEvent.DismissPicker) }
-        )
-    }
-
-    if (state.showTimePicker) {
-        HourMinutePicker(
-            onTimeSelected = { onEvent(EventEvent.TimeChanged(this)) },
-            onDismissRequest = { onEvent(EventEvent.DismissPicker) }
-        )
-    }
+    val bottomSheetNavigator = LocalBottomSheetNavigator.current
 
     Column(
         modifier = Modifier.fillMaxWidth(),
@@ -54,7 +42,7 @@ fun EventContent(
             placeholder = AppStrings.egDateAndTime,
             enabled = false,
             modifier = Modifier.noRippleClickable {
-                onEvent(EventEvent.ShowPicker(true))
+                bottomSheetNavigator.show(PickerScreen(true))
             }
         )
 
@@ -65,7 +53,7 @@ fun EventContent(
             placeholder = AppStrings.egDateAndTime,
             enabled = false,
             modifier = Modifier.noRippleClickable {
-                onEvent(EventEvent.ShowPicker(false))
+                bottomSheetNavigator.show(PickerScreen(false))
             }
         )
 

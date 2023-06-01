@@ -27,10 +27,22 @@ actual fun MapView(
         }
     }
     val location = remember(locationManager.location) {
-        val geoPosition = locationManager.location?.toGeo() ?: GeoPosition()
-        CLLocationCoordinate2DMake(geoPosition.latitude, geoPosition.longitude)
+        val position = locationManager.location?.toGeo() ?: GeoPosition()
+
+        currentPosition.value = GeoPosition(
+            latitude = position.latitude,
+            longitude = position.longitude,
+        )
+
+        CLLocationCoordinate2DMake(position.latitude, position.longitude)
     }
-    val mkMapView = remember { MKMapView() }
+    val mkMapView = remember {
+        MKMapView().apply {
+            setShowsCompass(true)
+            setShowsUserLocation(true)
+            setRotateEnabled(true)
+        }
+    }
 
     UIKitView(
         modifier = modifier.fillMaxSize(),
@@ -44,7 +56,7 @@ actual fun MapView(
                     latitudinalMeters = 1_000.0,
                     longitudinalMeters = 1_000.0
                 ),
-                animated = false
+                animated = true
             )
         }
     )

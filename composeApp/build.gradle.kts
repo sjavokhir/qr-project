@@ -45,6 +45,7 @@ kotlin {
                 implementation(libs.sqlDelight.extensions)
                 implementation(libs.multiplatformSettings)
                 implementation(libs.voyager.navigator)
+                implementation(libs.voyager.bottomSheetNavigator)
             }
         }
         val commonTest by getting {

@@ -8,6 +8,10 @@ import kotlinx.datetime.toInstant
 import kotlinx.datetime.toLocalDateTime
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.view.picker.HourMinute
 
+fun nowTimestamp(): Long {
+    return Clock.System.now().toEpochMilliseconds()
+}
+
 fun now(): DateTimeModel {
     return Clock.System.now().toDateTimeModel()
 }
