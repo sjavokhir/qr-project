@@ -25,8 +25,8 @@ class EmailScreenModel : BaseScreenModel<EmailState, EmailEvent>(EmailState()) {
 
     fun getContent(): QrGenerateContent {
         return QrGenerateContent(
-            qrContent = "mailto:" + state.value.email,
-            formattedContent = "${AppStrings.email}: " + state.value.email
+            qrContent = "mailto:" + currentState.email,
+            formattedContent = "${AppStrings.email}: " + currentState.email
         )
     }
 }

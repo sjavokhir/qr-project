@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -44,11 +45,11 @@ fun SurfaceContent(
     ) {
         Box(
             modifier = Modifier
+                .padding(bottom = 2.dp)
                 .clip(shape)
                 .background(color = color)
         ) {
             content()
         }
-        Spacer(modifier = Modifier.height(2.dp))
     }
 }

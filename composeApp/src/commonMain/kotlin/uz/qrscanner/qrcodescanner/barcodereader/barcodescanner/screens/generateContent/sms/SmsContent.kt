@@ -2,6 +2,7 @@ package uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generate
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -18,6 +19,7 @@ fun SmsContent(
     onGenerate: () -> Unit
 ) {
     Column(
+        modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(20.dp)
     ) {
         AppTextField(
@@ -26,7 +28,8 @@ fun SmsContent(
                 onEvent(SmsEvent.MessageChanged(it))
             },
             hint = AppStrings.message,
-            placeholder = AppStrings.enterMessage
+            placeholder = AppStrings.enterMessage,
+            singleLine = false
         )
 
         AppTextField(

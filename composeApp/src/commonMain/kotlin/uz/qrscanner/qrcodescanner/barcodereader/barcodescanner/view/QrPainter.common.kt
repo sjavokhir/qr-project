@@ -1,10 +1,9 @@
 package uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.view
 
-import androidx.compose.ui.graphics.painter.BitmapPainter
-import androidx.compose.ui.unit.Dp
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.shared.PlatformImage
 
-expect fun rememberQrBitmapPainter(
+expect fun rememberQrImage(
     content: String,
-    size: Dp,
-    padding: Dp
-): BitmapPainter
+    size: Int,
+    padding: Int
+): PlatformImage?

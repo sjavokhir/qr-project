@@ -37,6 +37,7 @@ class QrDetector(
 
     override fun onSuccess(results: MutableList<Barcode>) {
         onBarcodeParser(results.mapNotNull {
+            it.calendarEvent
             it.rawValue
         }.joinToString())
     }

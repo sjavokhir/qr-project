@@ -23,8 +23,8 @@ class TextScreenModel : BaseScreenModel<TextState, TextEvent>(TextState()) {
 
     fun getContent(): QrGenerateContent {
         return QrGenerateContent(
-            qrContent = state.value.text,
-            formattedContent = state.value.text
+            qrContent = currentState.text,
+            formattedContent = currentState.text
         )
     }
 }

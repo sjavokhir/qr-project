@@ -1,6 +1,7 @@
 package uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.shared
 
 import androidx.compose.foundation.layout.displayCutoutPadding
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.ui.Modifier
@@ -10,6 +11,7 @@ import java.util.*
 actual fun Modifier.notchPadding(): Modifier = this.displayCutoutPadding()
     .statusBarsPadding()
     .navigationBarsPadding()
+    .imePadding()
 
 actual fun randomUUID() = UUID.randomUUID().toString()
 

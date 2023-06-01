@@ -18,6 +18,9 @@ abstract class BaseScreenModel<State, ScreenEvent>(defaultState: State) : Screen
     private val eventChannelData = Channel<UiEvent>()
     val eventChannel = eventChannelData.receiveAsFlow()
 
+    val currentState: State
+        get() = state.value
+
     abstract fun onEvent(event: ScreenEvent)
 
     fun sendEvent(event: UiEvent) {

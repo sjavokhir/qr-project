@@ -16,6 +16,7 @@ struct ContentView: View {
     var body: some View {
         ComposeView()
             .ignoresSafeArea(.all, edges: [.top, .bottom])
+            .preferredColorScheme(.dark)
     }
 }
 

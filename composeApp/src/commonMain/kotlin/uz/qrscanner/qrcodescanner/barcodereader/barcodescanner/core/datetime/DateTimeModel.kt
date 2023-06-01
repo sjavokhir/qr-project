@@ -1,5 +1,7 @@
 package uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.core.datetime
 
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.core.extensions.az
+
 data class DateTimeModel(
     val dayOfMonth: Int = 1,
     val month: Int = 1,
@@ -11,8 +13,9 @@ data class DateTimeModel(
     val second: Int = 0,
 ) {
     private val monthShortName = if (monthName.length >= 3) monthName.take(3) else monthName
+
     val defaultDateTime =
         "${dayOfMonth.az()} $monthShortName $year, ${hour.az()}:${minute.az()}" // dd MMM yyyy, HH:mm
+    val defaultDate =
+        "${dayOfMonth.az()} $monthShortName $year" // dd MMM yyyy, HH:mm
 }
-
-private fun Int.az(): String = if (this >= 10) "" + this else "0$this"

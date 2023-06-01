@@ -1,6 +1,8 @@
 package uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.generateContent.socialMedia
 
 import kotlinx.coroutines.flow.update
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.core.extensions.removeSeparator
+import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.core.extensions.removeSpace
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.GenerateType
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.data.model.QrGenerateContent
 import uz.qrscanner.qrcodescanner.barcodereader.barcodescanner.screens.base.BaseScreenModel
@@ -15,10 +17,14 @@ class SocialMediaScreenModel(private val type: GenerateType) :
     }
 
     private fun onValueChanged(username: String) {
+        val mUsername = username
+            .removeSeparator()
+            .removeSpace()
+
         stateData.update {
             it.copy(
-                username = username,
-                isEnabled = username.isNotEmpty()
+                username = mUsername,
+                isEnabled = mUsername.isNotEmpty()
             )
         }
     }
@@ -31,46 +37,19 @@ class SocialMediaScreenModel(private val type: GenerateType) :
     }
 
     private fun getQrContent(): String {
-        return when (type) {
-            GenerateType.Youtube -> {
-                "https://youtube.com/user/" + state.value.username
-            }
-
-            GenerateType.Instagram -> {
-                "https://instagram.com/" + state.value.username
-            }
-
-            GenerateType.Facebook -> {
-                "https://facebook.com/" + state.value.username
-            }
-
-            GenerateType.Twitter -> {
-                "https://twitter.com/" + state.value.username
-            }
-
-            GenerateType.TikTok -> {
-                "https://tiktok.com/@" + state.value.username
-            }
-
-            GenerateType.Telegram -> {
-                "https://t.me/" + state.value.username
-            }
-
-            GenerateType.Twitch -> {
-                "https://twitch.tv/" + state.value.username
-            }
-
-            GenerateType.LinkedIn -> {
-                "https://linkedin.com/in/" + state.value.username
-            }
-
-            GenerateType.Github -> {
-                "https://github.com/" + state.value.username
-            }
-
-            else -> {
-                ""
-            }
+        val link = when (type) {
+            GenerateType.Youtube -> "https://youtube.com/user/"
+            GenerateType.Instagram -> "https://instagram.com/"
+            GenerateType.Facebook -> "https://facebook.com/"
+            GenerateType.Twitter -> "https://twitter.com/"
+            GenerateType.TikTok -> "https://tiktok.com/@"
+            GenerateType.Telegram -> "https://t.me/"
+            GenerateType.Twitch -> "https://twitch.tv/"
+            GenerateType.LinkedIn -> "https://linkedin.com/in/"
+            GenerateType.Github -> "https://github.com/"
+            else -> ""
         }
+
+        return link + currentState.username
     }
 }
