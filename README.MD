@@ -1,21 +1,5 @@
-# Compose Multiplatform Application
+# QReader - QR Scanner & Creator
 
-## Before running!
- - check your system with (KDoctor)[https://github.com/Kotlin/kdoctor]
- - install JDK 8 on your machine
- - add `local.properties` file to the project root and set a path to Android SDK there
- - run `./gradlew podInstall` in the project root
+#### Unlock the power of QR codes with QReader, the ultimate QR scanner and creator app. Seamlessly scan and decode QR codes with lightning speed, giving you instant access to websites, contact information, product details, and more. QReader's advanced scanning technology ensures accurate and reliable results every time.
 
-### Android
-To run the application on android device/emulator:  
- - open project in Android Studio and run imported android run configuration
-
-To build the application bundle:
- - run `./gradlew :composeApp:assembleDebug`
- - find `.apk` file in `composeApp/build/outputs/apk/debug/composeApp-debug.apk`
-
-### iOS
-To run the application on iPhone device/simulator:
- - Open `iosApp/iosApp.xcworkspace` in Xcode and run standard configuration
- - Or use (Kotlin Multiplatform Mobile plugin)[https://plugins.jetbrains.com/plugin/14936-kotlin-multiplatform-mobile] for Android Studio
-
+<a href="https://play.google.com/store/apps/details?id=com.qr.qrcode.barcode.scanner.reader.qreader.android" target="_blank"><img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" alt="Get it on Google Play" height="90"/></a>
